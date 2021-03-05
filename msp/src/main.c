@@ -1,5 +1,7 @@
 
 #include "io430.h"
+#include "inputs/inputs.h"
+#include "outputs/outputs.h"
 
 int main( void )
 {
