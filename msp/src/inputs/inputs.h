@@ -19,6 +19,15 @@ typedef enum Input_event{
     POTENTIOMETER_UPDATE        // Reading of the potentiometer value.
 }Input_event;
 
+// Input message, sent by low-level input manager to MQTT message composer
+typedef struct Input_message{
+     Id           id;           // device id  
+     Input_type   type;         // input type
+     Input_event  event;        // input event
+     Intensity    intensity;    // input intensity
+     Duration     duration;     // input duration
+}Input_message;
+
 
 // function that creates a message to be sent the server, specifying the input action that occured.
 void send_event(Input_type type, Input_event event, Intensity intensity, Duration duration_ms);
