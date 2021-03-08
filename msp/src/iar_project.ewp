@@ -2302,4 +2302,7 @@
     <file>
         <name>$PROJ_DIR$\outputs\outputs.h</name>
     </file>
+    <file>
+        <name>$PROJ_DIR$\common\type.h</name>
+    </file>
 </project>
