@@ -22,6 +22,15 @@ typedef enum Output_trigger{
     OFF                  // The output component is off.
 }Output_trigger;
 
+// Output message, sent by MQTT parser to low-level output manager
+typedef struct Output_message{
+     Output_type    type;         // output type
+     Output_trigger trigger;      // output trigger
+     Intensity      intensity;    // output intensity
+     Duration       duration;     // output duration
+} Output_message;
+
+
 // function that analyses a server message and calls other functions to modify the microc outputs consequently.
 void output(Output_type type, Output_trigger trigger, Intensity intensity, Duration duration);
 

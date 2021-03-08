@@ -7,4 +7,4 @@ typedef uint8_t     Id;
 typedef uint8_t     Intensity;
 typedef uint16_t    Duration;
 
-#endif TYPE_H
+#endif //TYPE_H
