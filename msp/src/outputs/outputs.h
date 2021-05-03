@@ -2,7 +2,7 @@
 #define OUTPUTS_H
 
 #include <stdint.h>
-#include "common/type.h"
+#include "../common/type.h"
 
 // All the output components which can be triggered on the microcontroller, according to our specifications.
 typedef enum Output_type{
