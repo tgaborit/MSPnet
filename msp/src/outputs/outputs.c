@@ -1,10 +1,4 @@
-// created by Emmanuel Durel
-// set of functions to drive the output peripherals such as led, buzzer ...
-
-#include "peripherals.h"
-#include "../outputs/outputs.h"
-#include "io430.h"
-#include <stdint.h>
+#include "outputs.h"
 
 
 // Function that sets led D1 or D2 (ON/OFF depending on trigger).
@@ -53,8 +47,10 @@ static void set_buzzer(Output_trigger trig){
   }
 }
 
-// Function to set a peripheral (LED, buzzer)
-void set_peripheral(Output_type type, Output_trigger trigger){
+// function that analyses a server message and calls other functions to modify the microc outputs consequently.
+void output(Output_type type, Output_trigger trigger, Intensity intensity, Duration duration){
+  set
+}
   switch(type){
   case 0:       ;
   case 1:       set_mono_led(type, trigger);
@@ -68,5 +64,3 @@ void set_peripheral(Output_type type, Output_trigger trigger){
   case 7:       set_buzzer(trigger);
   }
 }
-               
-  
