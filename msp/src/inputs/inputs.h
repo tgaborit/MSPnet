@@ -7,8 +7,8 @@
 // All the inputs that can be used on the microcontroller, according to our specifications.
 typedef enum Input_type{
     SWITCH_MCU,                 // Switch mounted on the microcontroller PIN1.3
-    SWITCH_MICRO_1,             // External switch n°1 connected to PINX.X
-    SWITCH_MICRO_2,             // External switch n°2 connected to PINX.X
+    SWITCH_MICRO_1,             // External switch n°1 connected to PIN1.1
+    SWITCH_MICRO_2,             // External switch n°2 connected to PIN1.1
     POTENTIOMETER               // Potentiometer connected to PINX.X
 }Input_type;
 

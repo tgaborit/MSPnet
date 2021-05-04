@@ -2,34 +2,64 @@
 #include "io430.h"
 #include "inputs/inputs.h"
 #include "outputs/outputs.h"
+#include "setup/board_setup.h"
 
-unsigned short adc_value = 0x0000;      // last registered adc value from potentiometer
-int switch_pressed = 0;                 // boolean value indicating a pressed switch
-int adc_interrupt = 0;                  // boolean value indicating adc interrupt
+
+#ifdef POTENTIO
+  unsigned short adc_value = 0x0000;      // last registered adc value from potentiometer
+#endif
+
+#ifdef SWITCH_0
+  int switch_pressed = 0;                 // boolean value indicating a pressed switch
+#endif
+
+#ifdef EXT_SWITCH_1
+  int ext_switch_1_pressed = 0;           // boolean value indicating a pressed switch
+#endif
+
+#ifdef EXT_SWITCH_2
+  int ext_switch_2_pressed = 0;           // boolean value indicating a pressed switch
+#endif
+
 int timer0_interrupt = 0;               // boolean value indicating timer 0 A0 interrupt
-int timer1_interrupt = 0;               // boolean value indicating timer 0 A0 interrupt
+int timer1_interrupt = 0;               // boolean value indicating timer 1 A0 interrupt
+int adc_interrupt = 0;                  // boolean value indicating adc interrupt
 
 int main( void )
 {
   // Stop watchdog timer to prevent time out reset
   WDTCTL = WDTPW + WDTHOLD;
   
-  // set up GPIOs (LED D1,D2,D3, switch, buzzer and potentiometer)
-  P1DIR |= 0x01;                // P1.0 output (led D1)
-  P1DIR |= 0x40;                // P1.6 output (led D2)
-  P1DIR |= 0x00;                // P1.x output (buzzer)
-  P1DIR != ~(0x08);             // P1.3 input  (switch)
-  P2DIR |= 0x2A;                // P2.1 P2.3 and P2.5 output (LED D3)
-  P1REN |= 0x08;                // P1.3 pullup/pulldown enable
-  P1OUT = 0x08;                 // P1.0 LOW, P1.6 LOW, P1.3 HIGH (for pull-up)
-  P1IE |= 0x08;                 // P1.3 IRQ enabled
-  P1IES |= 0x08;                // P1.3 High to low edge only
-  P1IFG &= ~(0x08);             // P1.3 IFG cleared
-  __enable_interrupt();
+  // setup buzzer if defined in the board setup header
+  #ifdef BUZZ
+    buzzer_setup();
+  #endif
   
-  ADC10CTL0 = ADC10SHT_2 + ADC10ON + ADC10IE; // ADC10ON, interrupt enabled
-  ADC10CTL1 = INCH_4 + ADC10SSEL_1 + ADC10DIV_7; // input A1, ACLK, clock divider by 8
-  ADC10AE0 |= 0x10; // PA.1 ADC option select
+  // setup switch if defined in the board setup header
+  #ifdef SWITCH_0
+    switch_setup(1,0x08);
+  #endif
+  
+  // setup external switch 1 if defined in the board setup header
+  #ifdef EXT_SWITCH_1
+    switch_setup(EXT_PORT_1, EXT_PIN_1);
+  #endif
+    
+  // setup external switch 2 if defined in the board setup header
+  #ifdef EXT_SWITCH_2
+    switch_setup(EXT_PORT_2, EXT_PIN_2);
+  #endif
+    
+  // setup potentiometer if defined in the board setup header  
+  #ifdef POTENTIO
+    potentio_setup();
+  #endif
+    
+  
+  // setup board leds D1, D2 and D3
+  led_setup();
+
+    
   
   TA1CCR0 = 655-1;                          // timer A1 CCR0 value (20 ms before interrupt)
   TA1CCTL0 = CCIE;                          // timer A1 CCR0 interrupt enabled (compare mode)
@@ -38,9 +68,15 @@ int main( void )
   TA0CCR0 = 32-1;               // timer A0 CCR0 value (approx. 1ms before interrupt)
   TA0CTL = TASSEL_1 + MC_1;     // ACLK, upmode
   
-  ADC10CTL0 |= ENC + ADC10SC;   // Sampling and conversion start
+  __enable_interrupt();
+  #ifdef POTENTIO
+    ADC10CTL0 |= ENC + ADC10SC;   // Sampling and conversion start
+  #endif
+  
   
   __bis_SR_register(LPM3_bits + GIE); // Enter LPM3 w/ interrupt
+  
+  // main loop
   while(1){
     
     // check if no interrupts are pending
@@ -63,7 +99,7 @@ int main( void )
       // check if switch is trully pressed
       if(~P1IN & 0x08)
       {
-        send_event(SWITCH_MCU,PRESS,0,0);       // send event to the server
+        //send_event(SWITCH_MCU,PRESS,0,0);       // send event to the server
       }
       
       P1IFG &=~0x08;                            // P1.3 IFG cleared
@@ -71,13 +107,15 @@ int main( void )
       timer1_interrupt = 0;                     // reset timer 1 interrupt flag
     }
     
-    // check if adc did an interrupt
-    if (adc_interrupt == 1){
-      adc_value = ADC10MEM;                                             // store last potentiometer converted value
-      send_event(POTENTIOMETER,POTENTIOMETER_UPDATE,adc_value,0);       // send event to the server
-      adc_interrupt = 0;                                                // clear interrupt flag
-      ADC10CTL0 |= ENC + ADC10SC;                                       // restart a conversion cycle
-    }
+    #ifdef POTENTIO
+      // check if adc did an interrupt
+      if (adc_interrupt == 1){
+        adc_value = ADC10MEM;                                             // store last potentiometer converted value
+        //send_event(POTENTIOMETER,POTENTIOMETER_UPDATE,adc_value,0);       // send event to the server
+        adc_interrupt = 0;                                                // clear interrupt flag
+        ADC10CTL0 |= ENC + ADC10SC;                                       // restart a conversion cycle
+      }
+    #endif
   }
     
   return 0;
@@ -119,10 +157,12 @@ __interrupt void Timer1_A0 (void)
 }
 
 // ADC10 interrupt service routine
-#pragma vector=ADC10_VECTOR
-__interrupt void ADC10_ISR(void)
-{
-  adc_interrupt = 1;                    // set flag to 1
-  LPM3_EXIT;                            // wake up main function
-}
+#ifdef POTENTIO
+  #pragma vector=ADC10_VECTOR
+  __interrupt void ADC10_ISR(void)
+  {
+    adc_interrupt = 1;                    // set flag to 1
+    LPM3_EXIT;                            // wake up main function
+  }
+#endif
 
