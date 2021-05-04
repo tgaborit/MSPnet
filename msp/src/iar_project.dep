@@ -5,80 +5,80 @@
     <configuration>
         <name>Debug</name>
         <outputs>
-            <file>$PROJ_DIR$\common\type.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
-            <file>$PROJ_DIR$\Debug\Exe\iar_project.d43</file>
-            <file>$TOOLKIT_DIR$\inc\io430.h</file>
+            <file>$PROJ_DIR$\..\..\..\..\Peripherals\chall3\main.c</file>
+            <file>$PROJ_DIR$\Debug\List\iar_project.map</file>
             <file>$PROJ_DIR$\outputs\outputs.h</file>
             <file>$PROJ_DIR$\main.c</file>
-            <file>$TOOLKIT_DIR$\config\linker\lnk430g2553.xcl</file>
-            <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.r43</file>
-            <file>$TOOLKIT_DIR$\inc\io430g2553.h</file>
-            <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
             <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
             <file>$PROJ_DIR$\Debug\Exe\iar_project.ulp</file>
-            <file>$PROJ_DIR$\Debug\Obj\iar_project.pbd</file>
+            <file>$PROJ_DIR$\common\type.h</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
+            <file>$TOOLKIT_DIR$\inc\io430g2553.h</file>
+            <file>$TOOLKIT_DIR$\inc\io430.h</file>
             <file>$TOOLKIT_DIR$\inc\dlib\c\stdint.h</file>
-            <file>$PROJ_DIR$\inputs\inputs.h</file>
-            <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.h</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
             <file>$PROJ_DIR$\Debug\Obj\main.xcl</file>
-            <file>$PROJ_DIR$\Debug\List\iar_project.map</file>
             <file>$TOOLKIT_DIR$\inc\dlib\c\xencoding_limits.h</file>
             <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
-            <file>$PROJ_DIR$\common\types.h</file>
+            <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
+            <file>$TOOLKIT_DIR$\config\linker\lnk430g2553.xcl</file>
+            <file>$PROJ_DIR$\inputs\inputs.h</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
+            <file>$PROJ_DIR$\Debug\Exe\iar_project.d43</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\iar_project.pbd</file>
+            <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.r43</file>
+            <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.h</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
             <outputs>
                 <tool>
                     <name>XLINK</name>
-                    <file> 6 21</file>
+                    <file> 20 1</file>
                 </tool>
                 <tool>
                     <name>ULP430</name>
-                    <file> 15</file>
+                    <file> 5</file>
                 </tool>
             </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Debug\Exe\iar_project.d43</name>
-            <outputs>
-                <tool>
-                    <name>XLINK</name>
-                    <file> 21</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>XLINK</name>
-                    <file> 10 14 11</file>
-                </tool>
-            </inputs>
         </file>
         <file>
             <name>$PROJ_DIR$\main.c</name>
             <outputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 14</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 23</file>
+                    <file> 4</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 20</file>
+                    <file> 12</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 14</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 7 12 13 18 17 4 1 5 19 3 22 2 0 8</file>
+                    <file> 9 8 15 18 10 16 19 11 24 7 13 21 6 2</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Debug\Exe\iar_project.d43</name>
+            <outputs>
+                <tool>
+                    <name>XLINK</name>
+                    <file> 1</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>XLINK</name>
+                    <file> 17 4 23</file>
                 </tool>
             </inputs>
         </file>
