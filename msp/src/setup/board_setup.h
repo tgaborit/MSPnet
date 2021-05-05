@@ -32,6 +32,9 @@
 // function to setup the board leds
 void led_setup();
 
+// function to setup the board timers
+void timer_setup();
+
 // function to setup the board for buzzer
 void buzzer_setup();
 
