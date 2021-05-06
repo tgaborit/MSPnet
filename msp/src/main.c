@@ -11,8 +11,10 @@ int i_rx_buffer = 0;
 
 void init_UART()
 {
-  P1SEL = BIT1 + BIT2 ;                     // P1.1 = RXD, P1.2=TXD
-  P1SEL2 = BIT1 + BIT2; 
+  P1SEL |= BIT1 + BIT2 ;                     // P1.1 = RXD, P1.2=TXD
+  P1SEL2 |= BIT1 + BIT2; 
+  
+//  P1DIR = P2;
   
   UCA0CTL1 |= UCSSEL_2;                     // SMCLK - 1 MHz
   
@@ -24,6 +26,9 @@ void init_UART()
   UCA0CTL1 &= ~UCSWRST;                     // **Initialize USCI state machine**
   
   IE2 |= UCA0RXIE;                          // Enable USCI_A0 RX interrupt
+  
+//  IFG2 = UCA0TXIFG;
+  //__enable_interrupt();
 }
 
 /* Write byte to USB-Serial interface */
@@ -55,6 +60,8 @@ int main( void )
 
   init_UART();
   
+//  IE2 &= ~UCA0RXIE; // Disable UART RX interrupt before we send data
+  
   UART_TX("AT");
   
   while(1);
@@ -62,10 +69,11 @@ int main( void )
   return 0;
 }
 
-// Timer A0 interrupt service routine
+// UART RX interrupt service routine
 #pragma vector=USCIAB0RX_VECTOR
 __interrupt void USCI0RX_ISR(void)
 {
     rx_buffer[i_rx_buffer] = UCA0TXBUF;
     i_rx_buffer++;
 }   
+
