@@ -3,8 +3,8 @@
 
 #include "../outputs/outputs.h"
 
-/* Parses json_string and fills output_message with the parsed data */
-int parse_json(char* json_string, Output_message* output_message);
-
+/* Parses a message received by the device and calls appropriate
+ * ouptut functions */
+int parse_message(char* message);
 
 #endif //JSON_PARSER_H

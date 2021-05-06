@@ -46,7 +46,7 @@ static int is_int(char* json_string, jsmntok_t* t) {
 
 
 /* Parses json_string and fills output_message with the parsed data */
-int parse_json(char* json_string, Output_message* output_message) {
+static int parse_json(char* json_string, Output_message* output_message) {
   
   int i;            // loop iterator
   int r;            // number of tokens found by the parser when parsing
@@ -127,5 +127,23 @@ int parse_json(char* json_string, Output_message* output_message) {
       return EXIT_FAILURE;
     }
   }
+  return EXIT_SUCCESS;
+}
+
+/* Parses a message received by the device */
+int parse_message(char* message) {
+  
+  int r;                          // result of parsing
+  Output_message output_message;  // holds output parameters
+  
+  /* Parse JSON message */
+  r = parse_json(message, &output_message);
+  if(!r) {
+    return EXIT_FAILURE;
+  }
+  
+  /* Asks device to perform ouput operation */
+  output(output_message.type, output_message.trigger, output_message.intensity, output_message.duration); 
+  
   return EXIT_SUCCESS;
 }
