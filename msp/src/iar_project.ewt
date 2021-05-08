@@ -2156,6 +2156,12 @@
         </settings>
     </configuration>
     <file>
+        <name>$PROJ_DIR$\comm\comm.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\comm\comm.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\inputs\inputs.h</name>
     </file>
     <file>
