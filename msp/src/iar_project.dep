@@ -32,6 +32,8 @@
             <file>$PROJ_DIR$\Debug\Obj\iar_project.pbd</file>
             <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.r43</file>
             <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.h</file>
+            <file>$PROJ_DIR$\comm\comm.h</file>
+            <file>$PROJ_DIR$\comm\comm.c</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
@@ -65,7 +67,7 @@
             <inputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 2 18 21 13 26 9 15 23 1 11 10 17 20 12 8 4</file>
+                    <file> 2 18 21 13 26 9 15 23 1 11 10 17 20 12 8 4 27</file>
                 </tool>
             </inputs>
         </file>
