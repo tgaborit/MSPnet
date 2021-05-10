@@ -13,7 +13,7 @@ void send_event(Input_type type, Input_event event, Intensity intensity, Duratio
   
   /* Device ID */
   strcpy(json_string, "{\"id\":");
-  sprintf(tmp, "%d", DEVICE_ID);
+  sprintf(tmp, "%.6d", DEVICE_ID);
   strcat(json_string, tmp);
   
   /* TYPE */
@@ -29,12 +29,12 @@ void send_event(Input_type type, Input_event event, Intensity intensity, Duratio
   
   /* INTENSITY */
   strcat(json_string, ", \"intensity\":");
-  sprintf(tmp, "%d", intensity);
+  sprintf(tmp, "%.6d", intensity);
   strcat(json_string, tmp);
 
   /* DURATION */
   strcat(json_string, ", \"duration\":");
-  sprintf(tmp, "%d", duration_ms);
+  sprintf(tmp, "%.6d", duration_ms);
   strcat(json_string,tmp);
 
   strcat(json_string, "}");
