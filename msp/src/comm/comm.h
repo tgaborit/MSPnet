@@ -1,6 +1,7 @@
 #ifndef COMM_H
 
 #include <stdint.h>
+#include <string.h>
 #include "io430.h"
 
 #define COMM_H
@@ -19,8 +20,12 @@ void comm_UART_TX_str_val(char *str);
 void comm_UART_TX_str(char *str);
 void comm_delay_s(int delay);
 void comm_ESP_rst();
-void comm_init_WIFI();
+void comm_WIFI_init();
+void comm_MQTT_TCP();
+void comm_MQTT_conn();
+void comm_MQTT_sub();
 void comm_MQTT_init();
 void comm_init();
+void comm_MQTT_pub(uint8_t *payload);
 
 #endif

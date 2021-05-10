@@ -86,7 +86,7 @@
             <inputs>
                 <tool>
                     <name>XLINK</name>
-                    <file> 11 31 16 32 15 35 39 42 17</file>
+                    <file> 11 16 15 17</file>
                 </tool>
             </inputs>
         </file>
@@ -105,7 +105,7 @@
             <inputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 25 8 18 4 22 6 7 19 13 1 10 21</file>
+                    <file> 25 8 18 4 22 6 7 19 13 5 20 1 10 21</file>
                 </tool>
             </inputs>
         </file>
@@ -128,7 +128,7 @@
             <inputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 5 18 4 22 6 7 19 13 20 1 10 21 29 8 28 27 25 50 48 55 49 52 41</file>
+                    <file> 5 18 4 22 6 7 19 13 20 1 10 21 29 8 28 27 25</file>
                 </tool>
             </inputs>
         </file>
@@ -227,10 +227,6 @@
                 </tool>
             </inputs>
         </file>
-        <forcedrebuild>
-            <name>[MULTI_TOOL]</name>
-            <tool>XLINK</tool>
-        </forcedrebuild>
     </configuration>
     <configuration>
         <name>Release</name>

@@ -73,7 +73,7 @@ void comm_ESP_rst()
   comm_delay_s(1);
 }
 
-void comm_init_WIFI()
+void comm_WIFI_init()
 {
   comm_UART_TX_str("AT+CWMODE=1");
   comm_delay_s(2);
@@ -87,23 +87,18 @@ void comm_init_WIFI()
   comm_delay_s(20);
 }
 
-void comm_MQTT_init()
+void comm_MQTT_TCP()
 {
-  comm_UART_TX_str("ATE0");        // Disable echo
-  comm_delay_s(1);
-  
-  comm_UART_TX_str("AT+CIPMUX=0"); // Single-Connection Mode
-  comm_delay_s(1);
-  
   comm_UART_TX_str_val("AT+CIPSTART=\"TCP\",\""); // Establish TCP connection
   comm_UART_TX_str_val(MQTTHOST);
   comm_UART_TX_str_val("\",");
   comm_UART_TX_str_val(MQTTPORT);
   comm_UART_TX_end();
   comm_delay_s(10);
+}
   
-  IE2 |= UCA0RXIE;
-  
+void comm_MQTT_conn()  
+{
   uint8_t data[] = {
       // type 1
       0x10,
@@ -131,11 +126,14 @@ void comm_MQTT_init()
   comm_UART_TX_raw(data, 16);
     
   comm_delay_s(10);
+}
   
-  uint8_t data2[] = {
-      // type 1
+void comm_MQTT_sub()
+{
+  uint8_t data[] = {
+      // type 8
       0x82,
-      // length 14
+      // length 7
       7,
       // packet identifier
       0x00, 0x01,
@@ -151,8 +149,29 @@ void comm_MQTT_init()
   comm_UART_TX_str("AT+CIPSEND=9"); // prepare to send x byte
   comm_delay_s(2);
   
-  comm_UART_TX_raw(data2, 9);
+  comm_UART_TX_raw(data, 9);
   
+  comm_delay_s(10);
+}
+
+void comm_MQTT_init()
+{
+  comm_UART_TX_str("ATE0");        // Disable echo
+  comm_delay_s(1);
+  
+  comm_UART_TX_str("AT+CIPMUX=0"); // Single-Connection Mode
+  comm_delay_s(1);
+  
+  comm_MQTT_TCP();
+  
+  IE2 |= UCA0RXIE;
+  
+  comm_MQTT_conn();
+  
+  comm_MQTT_sub();
+  
+  
+  comm_MQTT_pub("aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhh");
 }
 
 
@@ -163,8 +182,31 @@ void comm_init()
   comm_delay_s(1);
   
   comm_ESP_rst();
-  comm_init_WIFI();
+  comm_WIFI_init();
   
   comm_MQTT_init();
+}
 
+void comm_MQTT_pub(uint8_t *payload)
+{
+  uint8_t data[83] = {
+      // type 3
+      0x30,
+      // length 81
+      81,
+      // topic length
+      0x00, 0x05,
+      // topic name
+      0x49, 0x4e, 0x50, 0x55, 0x54,
+      // property length
+      0x00
+  };
+  
+  // payload
+  memcpy(&data[10], payload, 73);
+  
+  comm_UART_TX_str("AT+CIPSEND=83"); // prepare to send x byte
+  comm_delay_s(2);
+  
+  comm_UART_TX_raw(data, 83);
 }
