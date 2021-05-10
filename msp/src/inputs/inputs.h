@@ -2,7 +2,7 @@
 #define INPUTS_H
 
 #include <stdint.h>
-#include "common/type.h"
+#include "../common/type.h"
 
 // All the inputs that can be used on the microcontroller, according to our specifications.
 typedef enum Input_type{
