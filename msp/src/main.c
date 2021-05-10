@@ -4,6 +4,7 @@
 #include "outputs/outputs.h"
 #include "comm/comm.h"
 
+
 char rx_buffer[256] = {'\0'};
 int i_rx_buffer = 0;
 
@@ -14,7 +15,7 @@ int main( void )
   WDTCTL = WDTPW + WDTHOLD;
 
   comm_init();
-  
+       
   while(1);
   
   return 0;
