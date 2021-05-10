@@ -111,7 +111,7 @@ void comm_MQTT_conn()
   uint8_t data[] = {
       // type 1
       0x10,
-      // length 14
+      // remaining length 14
       14,
       // protocol name
       0x00, 0x04, 
@@ -145,25 +145,25 @@ void comm_MQTT_sub()
   uint8_t data[] = {
       // type 8
       0x82,
-      // length 7
-      7,
+      // remaining length 14
+      14,
       // packet identifier
       0x00, 0x01,
       // property length
       0x00,
       // length topic filter
-      0x00, 0x01,
-      '1',
+      0x00, 0x08,
+      'O', 'U', 'T', 'P', 'U', 'T', '/', '1',
       // subscription options
       0x00,
   };
   
-  // Prepare to send 9 bytes
-  comm_UART_TX_str("AT+CIPSEND=9"); // prepare to send x byte
+  // Prepare to send 16 bytes
+  comm_UART_TX_str("AT+CIPSEND=16"); // prepare to send x byte
   comm_delay_s(2);
   
-  // Send the 9 bytes
-  comm_UART_TX_raw(data, 9);
+  // Send the 16 bytes
+  comm_UART_TX_raw(data, 16);
   
   comm_delay_s(10);
 }
@@ -204,12 +204,12 @@ void comm_MQTT_pub(uint8_t *payload)
   uint8_t data[83] = {
       // type 3
       0x30,
-      // length 81
+      // remaining length 81
       81,
       // topic length
       0x00, 0x05,
       // topic name
-      0x49, 0x4e, 0x50, 0x55, 0x54,
+      'I', 'N', 'P','U', 'T',
       // property length
       0x00
   };
