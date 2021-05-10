@@ -14,7 +14,7 @@ void comm_UART_init()
   
   UCA0CTL1 &= ~UCSWRST;                     // **Initialize USCI state machine**
   
-  IE2 |= UCA0RXIE;                          // Enable USCI_A0 RX interrupt
+//  IE2 |= UCA0RXIE;                          // Enable USCI_A0 RX interrupt
   
   __enable_interrupt();
 }
@@ -51,21 +51,22 @@ void comm_UART_TX(char *str)
   comm_UART_TX_end();
 }
 
-void comm_ESP_delay()
+void comm_delay_s(int delay)
 {
-  __delay_cycles(500000);
+  for (int i = 0; i< delay; i++)
+    __delay_cycles(1000000);
 }
 
 void comm_ESP_rst()
 {
   comm_UART_TX("AT+RST");
-  comm_ESP_delay();
+  comm_delay_s(1);
 }
 
 void comm_ESP_WIFI()
 {
   comm_UART_TX("AT+CWMODE=1");
-  comm_ESP_delay();
+  comm_delay_s(2);
   
   comm_UART_TX_val("AT+CWJAP=\"");
   comm_UART_TX_val(WIFINETWORK);
@@ -73,7 +74,23 @@ void comm_ESP_WIFI()
   comm_UART_TX_val(WIFIPASSWORD);
   comm_UART_TX_val("\"");
   comm_UART_TX_end();
-  comm_ESP_delay();
+  comm_delay_s(20);
+}
+
+void comm_ESP_MQTT()
+{
+  comm_UART_TX("ATE0");        // Disable echo
+  comm_delay_s(1);
+  
+  comm_UART_TX("AT+CIPMUX=0"); // Single-Connection Mode
+  comm_delay_s(1);
+  
+  comm_UART_TX_val("AT+CIPSTART=\"TCP\",\""); // Establish TCP connection
+  comm_UART_TX_val(MQTTHOST);
+  comm_UART_TX_val("\",");
+  comm_UART_TX_val(MQTTPORT);
+  comm_UART_TX_end();
+  comm_delay_s(10);
 }
 
 
@@ -81,7 +98,13 @@ void comm_init()
 {
   comm_UART_init();
   IE2 &= ~UCA0RXIE; // Disable UART RX interrupt before we send data
+  comm_delay_s(1);
+  
   comm_ESP_rst();
   comm_ESP_WIFI();
+  
   IE2 |= UCA0RXIE;
+  
+  comm_ESP_MQTT();
+
 }
