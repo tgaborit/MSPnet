@@ -30,11 +30,11 @@ void switch_setup(int port, int pin){
   }
 }
 
-// function to setup the board forpotentiometer
+// function to setup the board for potentiometer
 void potentio_setup(){
   ADC10CTL0 = ADC10SHT_2 + ADC10ON + ADC10IE; // ADC10ON, interrupt enabled
-  ADC10CTL1 = INCH_4 + ADC10SSEL_1 + ADC10DIV_7; // input A1, ACLK, clock divider by 8
-  ADC10AE0 |= 0x10; // PA.1 ADC option select
+  ADC10CTL1 = POTENTIO_PIN + ADC10SSEL_1 + ADC10DIV_7; // input Ax, ACLK, clock divider by 8
+  ADC10AE0 |= POTENTIO_PIN; // PA.x ADC option select
 }
 
 // function to setup the board leds

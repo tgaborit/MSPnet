@@ -19,8 +19,11 @@
   #define EXT_PIN_2 0x00
 #endif
   
-// uncomment if a potentiometer is used
+// uncomment if a potentiometer is used, and fill the pin (port is automatically 1)
 #define POTENTIO
+#ifdef POTENTIO
+  #define POTENTIO_PIN 0x04
+#endif
   
 //uncomment if a buzzer is used, and fill the port and pin
 #define BUZZ

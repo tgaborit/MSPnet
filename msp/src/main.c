@@ -119,9 +119,15 @@ int main( void )
   while(1){
     
     // check if no interrupts are pending
-    if(timer0_interrupt == 0 && timer1_interrupt == 0 && adc_interrupt == 0)
+    if(timer0_interrupt == 0 && timer1_interrupt == 0)
     {
-      __bis_SR_register(LPM3_bits);         // Enter LPM3
+      #ifdef POTENTIO
+        if(adc_interrupt == 0){
+          __bis_SR_register(LPM3_bits);         // Enter LPM3
+        }
+      #else
+        __bis_SR_register(LPM3_bits);         // Enter LPM3
+      #endif
     }
     
     // check if timer 0 did an interrupt
