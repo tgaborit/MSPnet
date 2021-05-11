@@ -168,6 +168,42 @@ void comm_MQTT_sub()
   comm_delay_s(10);
 }
 
+void comm_MQTT_id()
+{
+  uint8_t data[20] = {
+      // type 3
+      0x30,
+      // remaining length xx
+      18,
+      // topic length
+      0x00, 0x03,
+      // topic name
+      'N', 'E', 'W',
+      // property length
+      0x00
+  };
+  
+  char json_string[128];  // final json string
+  char tmp[10];           // temporary variable holding int as strings
+  
+  /* Payload composed of Device ID */
+  strcpy(json_string, "{\"id\":");
+  sprintf(tmp, "\"%.3u\"", DEVICE_ID);
+  strcat(json_string, tmp);  
+  strcat(json_string, "}");
+  
+  // payload
+  memcpy(&data[8], json_string, 12);
+  
+  // Prepare to send 20 byte
+  comm_UART_TX_str("AT+CIPSEND=20");
+  comm_delay_s(2);
+  
+  // Send the 20 bytes
+  comm_UART_TX_raw(data, 20);
+  comm_delay_s(2);
+}
+
 void comm_MQTT_init()
 {
   comm_UART_TX_str("ATE0");        // Disable echo
@@ -179,6 +215,8 @@ void comm_MQTT_init()
   comm_MQTT_TCP();
   
   comm_MQTT_conn();
+  
+  comm_MQTT_id();
   
   comm_MQTT_sub();
 }
@@ -198,8 +236,8 @@ void comm_init()
   IE2 |= UCA0RXIE;
 }
 
-/* MQTT PUBLISH with input */
-void comm_MQTT_pub(uint8_t *payload)
+/* MQTT PUBLISH event with input */
+void comm_MQTT_pub_event(uint8_t *payload)
 {
   uint8_t data[89] = {
       // type 3
@@ -223,4 +261,5 @@ void comm_MQTT_pub(uint8_t *payload)
   
   // Send the 89 bytes
   comm_UART_TX_raw(data, 89);
+  comm_delay_s(2);
 }

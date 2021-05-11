@@ -53,7 +53,7 @@ void send_event(Input_type type, Input_event event, Intensity intensity, Duratio
   
   /* Device ID */
   strcpy(json_string, "{\"id\":");
-  sprintf(tmp, "\"%.6u\"", DEVICE_ID);
+  sprintf(tmp, "\"%.3u\"", DEVICE_ID);
   strcat(json_string, tmp);
   
   /* TYPE */
@@ -79,5 +79,5 @@ void send_event(Input_type type, Input_event event, Intensity intensity, Duratio
 
   strcat(json_string, "}");
   
-  comm_MQTT_pub(json_string); //send message to ESP
+  comm_MQTT_pub_event(json_string); //send message to ESP
 }
