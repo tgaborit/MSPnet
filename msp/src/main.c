@@ -29,90 +29,18 @@ int timer1_interrupt = 0;                       // boolean value indicating time
 int adc_interrupt = 0;                          // boolean value indicating adc interrupt
 int debounce_entity = 0;                        // value that keeps track of who is in debounce mode (0 for switch_0, 1 for ext_switch_1 and 2 for ext_switch_2)
 
-// function to modify variables and switch registers after a debounce operation. It returns 1 if a press/release occured
-static int debounce(int pressed, int port, int pin){
-  int result = 0;
-  
-  // go in code section corresponding to actual port
-  if(port == 1){
-    // checks if switch is trully pressed
-    if((pressed == 0) && (~P1IN & pin))
-    {
-      P1IES &= ~0x08;                               // P1.x low to high edge only, in order to detect released button
-      result = 1;
-    }
-    // checks if switch has been released
-    else if((pressed == 1) && (P1IN & pin))
-    {
-      P1IES |= 0x08;                                // P1.x high to low edge only, in order to detect pushed button
-      result = 1;
-    }
-    P1IFG &= ~pin;                                    // P1.x only IFG cleared
-    P1IE |= pin;                                      // P1.x only IRQ enable (reset switch after debouncing mode) 
-    return result;
-  }
-  else{
-    // checks if switch is trully pressed
-    if((pressed == 0) && (~P2IN & pin))
-    {
-      P2IES &= ~0x08;                               // P2.x low to high edge only, in order to detect released button
-      result = 1;
-    }
-    // checks if switch has been released
-    else if((pressed == 1) && (P2IN & pin))
-    {
-      P2IES |= 0x08;                                // P2.x high to low edge only, in order to detect pushed button
-      result = 1;
-    }
-    P2IFG &=~pin;                                    // P2.x only IFG cleared
-    P2IE |= pin;                                      // P2.x only IRQ enable (reset switch after debouncing mode)
-    return result;
-  }
-}
-
 int main( void )
 {
   // Stop watchdog timer to prevent time out reset
   WDTCTL = WDTPW + WDTHOLD;
   
-  // setup buzzer if defined in the board setup header
-  #ifdef BUZZ
-    buzzer_setup();
-  #endif
+  // setup all the input and output peripherals and devices
+  full_setup();
   
-  // setup switch if defined in the board setup header
-  #ifdef SWITCH_0
-    switch_setup(1,0x08);
-  #endif
-  
-  // setup external switch 1 if defined in the board setup header
-  #ifdef EXT_SWITCH_1
-    switch_setup(EXT_PORT_1, EXT_PIN_1);
-  #endif
-    
-  // setup external switch 2 if defined in the board setup header
-  #ifdef EXT_SWITCH_2
-    switch_setup(EXT_PORT_2, EXT_PIN_2);
-  #endif
-    
-  // setup potentiometer if defined in the board setup header  
   #ifdef POTENTIO
-    potentio_setup();
+    ADC10CTL0 |= ENC + ADC10SC;   // adc first sampling and conversion start
   #endif
     
-  
-  // setup board leds D1, D2 and D3
-  led_setup();
-  
-  // setup board timer 0 A0 and timer 1 A0
-  void timer_setup();
-  
-  __enable_interrupt();
-  #ifdef POTENTIO
-    ADC10CTL0 |= ENC + ADC10SC;   // Sampling and conversion start
-  #endif
-  
-  
   __bis_SR_register(LPM3_bits + GIE); // Enter LPM3 w/ interrupt
   
   // main loop

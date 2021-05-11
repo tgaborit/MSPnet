@@ -1,4 +1,5 @@
 #include "outputs.h"
+#include "io430.h"
 
 
 // Function that sets led D1 or D2 (ON/OFF depending on trigger).
@@ -49,8 +50,6 @@ static void set_buzzer(Output_trigger trig){
 
 // function that analyses a server message and calls other functions to modify the microc outputs consequently.
 void output(Output_type type, Output_trigger trigger, Intensity intensity, Duration duration){
-  set
-}
   switch(type){
   case 0:       ;
   case 1:       set_mono_led(type, trigger);

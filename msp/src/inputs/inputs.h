@@ -2,6 +2,7 @@
 #define INPUTS_H
 
 #include <stdint.h>
+#include "io430.h"
 #include "../common/type.h"
 
 // All the inputs that can be used on the microcontroller, according to our specifications.
@@ -28,8 +29,10 @@ typedef struct Input_message{
      Duration     duration;     // input duration
 }Input_message;
 
-
 // function that creates a message to be sent the server, specifying the input action that occured.
 void send_event(Input_type type, Input_event event, Intensity intensity, Duration duration_ms);
+
+// function to modify variables and switch registers after a debounce operation. It returns 1 if a press/release occured
+int debounce(int pressed, int port, int pin);
 
 #endif //INPUTS_H

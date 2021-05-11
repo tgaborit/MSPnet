@@ -56,3 +56,42 @@ void timer_setup(){
   TA0CCR0 = 32-1;               // timer A0 CCR0 value (approx. 1ms before interrupt)
   TA0CTL = TASSEL_1 + MC_1;     // ACLK, upmode 
 }
+
+// function to setup all the peripherals and devices
+void full_setup(){
+
+  // setup buzzer if defined in the board setup header
+  #ifdef BUZZ
+    buzzer_setup();
+  #endif
+  
+  // setup switch if defined in the board setup header
+  #ifdef SWITCH_0
+    switch_setup(1,0x08);
+  #endif
+  
+  // setup external switch 1 if defined in the board setup header
+  #ifdef EXT_SWITCH_1
+    switch_setup(EXT_PORT_1, EXT_PIN_1);
+  #endif
+    
+  // setup external switch 2 if defined in the board setup header
+  #ifdef EXT_SWITCH_2
+    switch_setup(EXT_PORT_2, EXT_PIN_2);
+  #endif
+    
+  // setup potentiometer if defined in the board setup header  
+  #ifdef POTENTIO
+    potentio_setup();
+  #endif
+    
+  
+  // setup board leds D1, D2 and D3
+  led_setup();
+  
+  // setup board timer 0 A0 and timer 1 A0
+  timer_setup();
+  
+  // enable the interrupts
+  __enable_interrupt();
+}

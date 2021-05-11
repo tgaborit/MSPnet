@@ -47,4 +47,7 @@ void potentio_setup();
 // function to setup the board for switchs
 void switch_setup(int port, int pin);
 
+// function to setup all the peripherals and devices
+void full_setup();
+
 #endif
