@@ -143,7 +143,7 @@ int parse_message(char* message) {
   }
   
   /* Asks device to perform ouput operation */
-//  output(output_message.type, output_message.trigger, output_message.intensity, output_message.duration); 
+  output(output_message.type, output_message.trigger, output_message.intensity, output_message.duration); 
   
   return EXIT_SUCCESS;
 }

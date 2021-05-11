@@ -10,10 +10,9 @@ void mqtt_recv_publish(uint8_t* data, char* topic, char* payload) {
    * remaining length: 1
    * topic length: 2
    * topic: 4
-   * packet id: topic_index + topic_length
-   * property length:  topic index + topic_length + 2
+   * property length:  topic index + topic_length
    * (assuming no property)
-   * payload: topic index + topic_length + 3
+   * payload: topic index + topic_length + 1
   */
 
   uint8_t remaining_length = data[1];
@@ -26,12 +25,12 @@ void mqtt_recv_publish(uint8_t* data, char* topic, char* payload) {
   topic[topic_length] = '\0';
   
   /* variable_header_lenght = topic_length_length (2) + topic_length + 
-   * packet_id (2) + property_length_length (1, assuming no property)*/
-  uint8_t variable_header_length = 2 + topic_length + 2 + 1;
+   * property_length_length (1, assuming no property)*/
+  uint8_t variable_header_length = 2 + topic_length + 1;
   uint16_t payload_length = remaining_length - variable_header_length ;
   
   /* copy payload */
-  memcpy(payload, &(data[4+topic_length+3]), payload_length);
+  memcpy(payload, &(data[4+topic_length+1]), payload_length);
   payload[payload_length] = '\0';
 }
 
