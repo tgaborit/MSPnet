@@ -8,15 +8,15 @@
 // uncomment if an external switch is used, and fill the port and pin
 #define EXT_SWITCH_1
 #ifdef EXT_SWITCH_1
-  #define EXT_PORT_1 0          // port (set to 1 or 2)
-  #define EXT_PIN_1 0x00        // pin (mask of the pin position between pin 0 and 7)
+  #define EXT_PORT_1 1          // port (set to 1 or 2)
+  #define EXT_PIN_1 0x10        // pin (mask of the pin position between pin 0 and 7)
 #endif
 
 // uncomment if another external switch is used, and fill the port and pin
 #define EXT_SWITCH_2
 #ifdef EXT_SWITCH_2
   #define EXT_PORT_2 1          // port (set to 1 or 2)
-  #define EXT_PIN_2 0x00        // pin (mask of the pin position between pin 0 and 7)
+  #define EXT_PIN_2 0x20        // pin (mask of the pin position between pin 0 and 7)
 #endif
   
 // uncomment if a potentiometer is used, and fill the pin (port is automatically 1)
@@ -29,7 +29,7 @@
 #define BUZZ
 #ifdef BUZZ
   #define BUZZ_PORT 1           // port (set to 1 or 2)
-  #define BUZZ_PIN 0x00         // pin (mask of the pin position between pin 0 and 7)
+  #define BUZZ_PIN 0x80         // pin (mask of the pin position between pin 0 and 7)
 #endif
 
 // function to setup the board leds
