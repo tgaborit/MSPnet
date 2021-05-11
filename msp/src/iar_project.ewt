@@ -2156,10 +2156,22 @@
         </settings>
     </configuration>
     <file>
+        <name>$PROJ_DIR$\setup\board_setup.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\setup\board_setup.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\inputs\inputs.c</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\inputs\inputs.h</name>
     </file>
     <file>
         <name>$PROJ_DIR$\main.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\outputs\outputs.c</name>
     </file>
     <file>
         <name>$PROJ_DIR$\outputs\outputs.h</name>

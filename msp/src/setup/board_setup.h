@@ -6,14 +6,14 @@
 #define SWITCH_0
 
 // uncomment if an external switch is used, and fill the port and pin
-#define EXT_SWITCH_1
+//#define EXT_SWITCH_1
 #ifdef EXT_SWITCH_1
-  #define EXT_PORT_1 0
-  #define EXT_PIN_1 0x00
+  #define EXT_PORT_1 1
+  #define EXT_PIN_1 0x10
 #endif
 
 // uncomment if another external switch is used, and fill the port and pin
-#define EXT_SWITCH_2
+//#define EXT_SWITCH_2
 #ifdef EXT_SWITCH_2
   #define EXT_PORT_2 0
   #define EXT_PIN_2 0x00
@@ -22,11 +22,11 @@
 // uncomment if a potentiometer is used, and fill the pin (port is automatically 1)
 #define POTENTIO
 #ifdef POTENTIO
-  #define POTENTIO_PIN 0x04
+  #define POTENTIO_PIN 0x02
 #endif
   
 //uncomment if a buzzer is used, and fill the port and pin
-#define BUZZ
+//#define BUZZ
 #ifdef BUZZ
   #define BUZZ_PORT 1
   #define BUZZ_PIN 0x00
