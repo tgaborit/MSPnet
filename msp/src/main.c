@@ -10,6 +10,7 @@
 
 #ifdef POTENTIO
   unsigned short adc_value = 0x0000;            // last registered adc value from potentiometer
+  int adc_counter = 50;                         // 50 ms counter before restarting an adc cycle
 #endif
 
 #ifdef SWITCH_0
@@ -28,6 +29,8 @@
 #endif
 
 int timer0_interrupt = 0;                       // boolean value indicating timer 0 A0 interrupt
+int timer0_CCR1_interrupt = 0;                  // boolean value indicating timer 0 A0 CCR1 interrupt
+int timer0_CCR2_interrupt = 0;                  // boolean value indicating timer 0 A0 CCR2 interrupt
 int timer1_interrupt = 0;                       // boolean value indicating timer 1 A0 interrupt
 int adc_interrupt = 0;                          // boolean value indicating adc interrupt
 int debounce_entity = 0;                        // value that keeps track of who is in debounce mode (0 for switch_0, 1 for ext_switch_1 and 2 for ext_switch_2)
@@ -56,7 +59,7 @@ int main( void )
   while(1){
     
     // check if no interrupts are pending
-    if(timer0_interrupt == 0 && timer1_interrupt == 0)
+    if(timer0_interrupt == 0 && timer0_CCR1_interrupt == 0 && timer0_CCR2_interrupt == 0 && timer1_interrupt == 0)
     {
       #ifdef POTENTIO
         if(adc_interrupt == 0){
@@ -72,31 +75,50 @@ int main( void )
     {
       timer0_interrupt = 0;           // clear interrupt flag
       
-    // update switches press time if they are used and in press state
-    #ifdef SWITCH_0
-      if(switch_pressed == 1 && switch_press_time < 65535)
-      {
-        ++switch_press_time;
-      }
-    #endif
+      // update switches press time if they are used and in press state
+      #ifdef SWITCH_0
+        if(switch_pressed == 1 && switch_press_time < 65535)
+        {
+          ++switch_press_time;
+        }
+      #endif
       
-    #ifdef EXT_SWITCH_1
-      if(ext_switch_1_pressed == 1 && ext_switch_1_press_time < 65535)
-      {
-        ++ext_switch_1_press_time;
-      }
-    #endif
+      #ifdef EXT_SWITCH_1
+        if(ext_switch_1_pressed == 1 && ext_switch_1_press_time < 65535)
+        {
+          ++ext_switch_1_press_time;
+        }
+      #endif
       
-    #ifdef EXT_SWITCH_2
-      if(ext_switch_2_pressed == 1 && ext_switch_2_press_time < 65535)
-      {
-        ++ext_switch_2_press_time;
-      }
-    #endif
+      #ifdef EXT_SWITCH_2
+        if(ext_switch_2_pressed == 1 && ext_switch_2_press_time < 65535)
+        {
+          ++ext_switch_2_press_time;
+        } 
+      #endif 
+        
+      // update outputs
+      update_outputs(0);
       
-      // check if command is received for updating output peripherals
-      // TODO
-      
+      #ifdef POTENTIO
+        if(adc_counter == 0){
+          ADC10CTL0 |= ENC + ADC10SC;       // restart a conversion cycle
+          adc_counter = 50;
+        }
+        --adc_counter;
+      #endif
+    }
+    
+    // check if timer0 CCR1 did an interrupt
+    if(timer0_CCR1_interrupt == 1){
+      update_outputs(1);                // update outputs concerned by CCR1 PWM
+      timer0_CCR1_interrupt = 0;        // reset interrupt flag
+    }
+    
+    // check if timer0 CCR2 did an interrupt
+    if(timer0_CCR2_interrupt == 1){
+      update_outputs(2);                // update outputs concerned by CCR2 PWM
+      timer0_CCR2_interrupt = 0;        // reset interrupt flag
     }
 
     // check if timer 1 did an interrupt
@@ -148,7 +170,6 @@ int main( void )
         adc_value = ADC10MEM;                                             // store last potentiometer converted value
         send_event(POTENTIOMETER,POTENTIOMETER_UPDATE,adc_value,0);     // send event to the server
         adc_interrupt = 0;                                                // clear interrupt flag
-        ADC10CTL0 |= ENC + ADC10SC;                                       // restart a conversion cycle
       }
     #endif
   }
@@ -235,7 +256,14 @@ __interrupt void Port_2(void)
 #pragma vector=TIMER0_A0_VECTOR
 __interrupt void Timer0_A0 (void)
 {
-  timer0_interrupt = 1;         // update interrupt flag
+  // checks which CCR generated the interrupt
+  switch(TA0IV){
+    case 2:       timer0_CCR1_interrupt = 1;    // update interrupt flag
+                  break;
+    case 4:       timer0_CCR2_interrupt = 1;    // update interrupt flag
+                  break;
+    default:      timer0_interrupt = 1;         // update interrupt flag
+  }
   LPM3_EXIT;
 }
 

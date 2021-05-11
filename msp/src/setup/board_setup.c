@@ -9,7 +9,7 @@ void buzzer_setup(){
   }
   else{
     P2DIR |= BUZZ_PIN;          // P2.x output
-    P2OUT != ~(BUZZ_PIN);       // P1.x LOW
+    P2OUT != ~(BUZZ_PIN);       // P2.x LOW
   }
 }
 #endif
@@ -36,8 +36,8 @@ void switch_setup(int port, int pin){
 // function to setup the board for potentiometer
 void potentio_setup(){
   ADC10CTL0 = ADC10SHT_2 + ADC10ON + ADC10IE; // ADC10ON, interrupt enabled
-  ADC10CTL1 = POTENTIO_PIN + ADC10SSEL_1 + ADC10DIV_7; // input Ax, ACLK, clock divider by 8
-  ADC10AE0 |= POTENTIO_PIN; // PA.x ADC option select
+  ADC10CTL1 = POTENTIO_PIN*(0x1000u) + ADC10SSEL_1 + ADC10DIV_7; // input Ax, ACLK, clock divider by 8
+  ADC10AE0 |= (0x01<<POTENTIO_PIN); // PA.x ADC option select
 }
 #endif
 
@@ -47,7 +47,7 @@ void led_setup(){
   P1DIR |= 0x01;                // P1.0 output (led D1)
   P1DIR |= 0x40;                // P1.6 output (led D2)
   P2DIR |= 0x2A;                // P2.1 P2.3 and P2.5 output (LED D3)  
-  P1OUT != ~(0x08);             // P1.0 LOW, P1.6 LOW
+  P1OUT != ~(0x41);             // P1.0 LOW, P1.6 LOW
   P2OUT != ~(0x2A);             // P2.1, P2.3, P2.5 LOW
 }
   
@@ -58,7 +58,7 @@ void timer_setup(){
   
   TA0CCTL0 = CCIE;              // timer A0 CCR0 interrupt enabled (compare mode)
   TA0CCR0 = 32-1;               // timer A0 CCR0 value (approx. 1ms before interrupt)
-  TA0CTL = TASSEL_1 + MC_1;     // ACLK, upmode 
+  TA0CTL = TASSEL_1 + MC_1;     // ACLK, up mode
 }
 
 // function to setup all the peripherals and devices
@@ -78,17 +78,17 @@ void full_setup(){
   #ifdef EXT_SWITCH_1
     switch_setup(EXT_PORT_1, EXT_PIN_1);
   #endif
-    
+  
   // setup external switch 2 if defined in the board setup header
   #ifdef EXT_SWITCH_2
     switch_setup(EXT_PORT_2, EXT_PIN_2);
   #endif
-    
+  
   // setup potentiometer if defined in the board setup header  
   #ifdef POTENTIO
     potentio_setup();
   #endif
-    
+  
   
   // setup board leds D1, D2 and D3
   led_setup();
