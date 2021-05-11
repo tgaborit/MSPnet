@@ -13,13 +13,13 @@ int debounce(int pressed, int port, int pin){
     // checks if switch is trully pressed
     if((pressed == 0) && (~P1IN & pin))
     {
-      P1IES &= ~0x08;                               // P1.x low to high edge only, in order to detect released button
+      P1IES &= ~pin;                                // P1.x low to high edge only, in order to detect released button
       result = 1;
     }
     // checks if switch has been released
     else if((pressed == 1) && (P1IN & pin))
     {
-      P1IES |= 0x08;                                // P1.x high to low edge only, in order to detect pushed button
+      P1IES |= pin;                                // P1.x high to low edge only, in order to detect pushed button
       result = 1;
     }
     P1IFG &= ~pin;                                    // P1.x only IFG cleared

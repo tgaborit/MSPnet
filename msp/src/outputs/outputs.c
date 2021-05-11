@@ -35,7 +35,7 @@ static void set_D1(Output_trigger trig, Intensity intensity, Duration duration){
   
   // if trigger is OFF, reset led.
   else{
-    P1OUT != ~(0x01);          // reset only the right pin.
+    P1OUT &= ~(0x01);          // reset only the right pin.
     LED_D1_timer = 0;          // reset the timer
     D1_PWM = 0;
   }
@@ -67,7 +67,7 @@ static void set_D2(Output_trigger trig, Intensity intensity, Duration duration){
   
   // if trigger is OFF, reset led.
   else{
-    P1OUT != ~(0x40);          // reset only the right pin.
+    P1OUT &= ~(0x40);          // reset only the right pin.
     LED_D2_timer = 0;          // reset the timer
     D2_PWM = 0;
   }
@@ -99,7 +99,7 @@ static void set_D3(Output_type type, Output_trigger trig, Intensity intensity, D
   
   // if trigger is OFF, reset led.
   else{
-    P2OUT != ~(command[type-2]);                        // reset only P2.1, P2.3 and P2.5
+    P2OUT &= ~(command[type-2]);                        // reset only P2.1, P2.3 and P2.5
     LED_D3_timer = 0;                                   // reset the timer
     D3_PWM = 0;
   }
@@ -136,10 +136,10 @@ static void set_buzzer(Output_trigger trig, Intensity intensity, Duration durati
   // if trigger is OFF, reset led.
   else{
     if(BUZZ_PORT == 1){
-      P1OUT != ~(BUZZ_PIN);        // reset only P1.x
+      P1OUT &= ~(BUZZ_PIN);        // reset only P1.x
     }
     else{
-      P2OUT != ~(BUZZ_PIN);        // reset only P2.x
+      P2OUT &= ~(BUZZ_PIN);        // reset only P2.x
     }
     buzzer_timer = 0;                                   // reset the timer
     buzzer_PWM = 0;
@@ -180,7 +180,7 @@ void update_outputs(int mode){
   }
   else{
     D1_PWM = 0;         // else reset led parameters
-    P1OUT != ~(0x01);
+    P1OUT &= ~(0x01);
   }
   
   // check if timer is still good for D2 and update it
@@ -196,7 +196,7 @@ void update_outputs(int mode){
   }
   else{
     D2_PWM = 0;         // else reset led parameters
-    P1OUT != ~(0x40);
+    P1OUT &= ~(0x40);
   }
     
   // check if timer is still good for D3 and update it
@@ -212,7 +212,7 @@ void update_outputs(int mode){
   }
   else{
     D3_PWM = 0;         // else reset led parameters
-    P2OUT != ~(0x2A);
+    P2OUT &= ~(0x2A);
   }
   
   // check if timer is still good for buzzer and update it
@@ -234,10 +234,10 @@ void update_outputs(int mode){
   else{
     D3_PWM = 0;         // else reset led parameters
     if(BUZZ_PORT == 1){
-        P1OUT != ~(BUZZ_PIN);   // reset only P1.x
+        P1OUT &= ~(BUZZ_PIN);   // reset only P1.x
       }
     else{
-      P2OUT != ~(BUZZ_PIN);     // reset only P2.x
+      P2OUT &= ~(BUZZ_PIN);     // reset only P2.x
     }
   }
 }

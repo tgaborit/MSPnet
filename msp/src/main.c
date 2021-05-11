@@ -185,7 +185,7 @@ __interrupt void Port_1(void)
     // check if switch_0 generated the interrupt
     if (P1IFG & 0x08)
     {
-      P1IE != ~(0x08);            // P1.3 only IRQ disabled
+      P1IE &= ~(0x08);            // P1.3 only IRQ disabled
       P1IFG &= ~(0x08);           // P1.3 only IFG cleared
       TA1R = 0;                   // reset count value
       TA1CCR0 = 655-1;            // timer A1 CCR0 value (20 ms before interrupt)
@@ -198,7 +198,7 @@ __interrupt void Port_1(void)
     // check if ext_switch_1 is on port 1 and generated an interrupt
     if(P1IFG & EXT_PIN_1)
     {
-      P1IE != ~(EXT_PIN_1);       // P1.x only IRQ disabled
+      P1IE &= ~(EXT_PIN_1);       // P1.x only IRQ disabled
       P1IFG &= ~(EXT_PIN_1);      // P1.x only IFG cleared
       TA1R = 0;                   // reset count value
       TA1CCR0 = 655-1;            // timer A1 CCR0 value (20 ms before interrupt)
@@ -211,7 +211,7 @@ __interrupt void Port_1(void)
     // check if ext_switch_2 is on port 1 and generated an interrupt
     if(P1IFG & EXT_PIN_2)
     {
-      P1IE != ~(EXT_PIN_2);       // P1.x only IRQ disabled
+      P1IE &= ~(EXT_PIN_2);       // P1.x only IRQ disabled
       P1IFG &= ~(EXT_PIN_2);      // P1.x only IFG cleared
       TA1R = 0;                   // reset count value
       TA1CCR0 = 655-1;            // timer A1 CCR0 value (20 ms before interrupt)
@@ -229,7 +229,7 @@ __interrupt void Port_2(void)
     // check if ext_switch_1 is on port 2 and generated an interrupt
     if(P2IFG & EXT_PIN_1)
     {
-      P2IE != ~(EXT_PIN_1);       // P2.x only IRQ disabled
+      P2IE &= ~(EXT_PIN_1);       // P2.x only IRQ disabled
       P2IFG &= ~(EXT_PIN_1);      // P2.x only IFG cleared
       TA1R = 0;                   // reset count value
       TA1CCR0 = 655-1;            // timer A1 CCR0 value (20 ms before interrupt)
@@ -242,7 +242,7 @@ __interrupt void Port_2(void)
     // check if ext_switch_2 is on port 2 and generated an interrupt
     if(P2IFG & EXT_PIN_2)
     {
-      P2IE != ~(EXT_PIN_2);       // P2.x only IRQ disabled
+      P2IE &= ~(EXT_PIN_2);       // P2.x only IRQ disabled
       P2IFG &= ~(EXT_PIN_2);      // P2.x only IFG cleared
       TA1R = 0;                   // reset count value
       TA1CCR0 = 655-1;            // timer A1 CCR0 value (20 ms before interrupt)

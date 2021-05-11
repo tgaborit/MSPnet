@@ -5,11 +5,11 @@
 void buzzer_setup(){
   if(BUZZ_PORT == 1){
     P1DIR |= BUZZ_PIN;          // P1.x output
-    P1OUT != ~(BUZZ_PIN);       // P1.x LOW
+    P1OUT &= ~(BUZZ_PIN);       // P1.x LOW
   }
   else{
     P2DIR |= BUZZ_PIN;          // P2.x output
-    P2OUT != ~(BUZZ_PIN);       // P2.x LOW
+    P2OUT &= ~(BUZZ_PIN);       // P2.x LOW
   }
 }
 #endif
@@ -17,14 +17,14 @@ void buzzer_setup(){
 // function to setup the board for switchs
 void switch_setup(int port, int pin){
   if (port == 1){
-    P1DIR != ~(pin);           // P1.x input  (switch)
+    P1DIR &= ~(pin);           // P1.x input  (switch)
     P1REN |= pin;              // P1.x pullup/pulldown enable
     P1IE |= pin;               // P1.x IRQ enabled
     P1IES |= pin;              // P1.x High to low edge only
     P1IFG &= ~(pin);           // P1.x IFG cleared
   }
   else{
-    P2DIR != ~(pin);           // P2.x input  (switch)
+    P2DIR &= ~(pin);           // P2.x input  (switch)
     P2REN |= pin;              // P2.x pullup/pulldown enable
     P2IE |= pin;               // P2.x IRQ enabled
     P2IES |= pin;              // P2.x High to low edge only
@@ -47,8 +47,8 @@ void led_setup(){
   P1DIR |= 0x01;                // P1.0 output (led D1)
   P1DIR |= 0x40;                // P1.6 output (led D2)
   P2DIR |= 0x2A;                // P2.1 P2.3 and P2.5 output (LED D3)  
-  P1OUT != ~(0x41);             // P1.0 LOW, P1.6 LOW
-  P2OUT != ~(0x2A);             // P2.1, P2.3, P2.5 LOW
+  P1OUT &= ~(0x41);             // P1.0 LOW, P1.6 LOW
+  P2OUT &= ~(0x2A);             // P2.1, P2.3, P2.5 LOW
 }
   
 // function to setup the board timers
