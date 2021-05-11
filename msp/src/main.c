@@ -7,6 +7,7 @@
 
 #ifdef POTENTIO
   unsigned short adc_value = 0x0000;            // last registered adc value from potentiometer
+  int adc_counter = 50;                         // 50 ms counter before restarting an adc cycle
 #endif
 
 #ifdef SWITCH_0
@@ -89,14 +90,26 @@ int main( void )
         
       // update outputs
       update_outputs(0);
+      
+      #ifdef POTENTIO
+        if(adc_counter == 0){
+          ADC10CTL0 |= ENC + ADC10SC;       // restart a conversion cycle
+          adc_counter = 50;
+        }
+        --adc_counter;
+      #endif
     }
     
+    // check if timer0 CCR1 did an interrupt
     if(timer0_CCR1_interrupt == 1){
-      update_outputs(1);
+      update_outputs(1);                // update outputs concerned by CCR1 PWM
+      timer0_CCR1_interrupt = 0;        // reset interrupt flag
     }
     
-    if(timer0_CCR2_interrupt == 2){
-      update_outputs(2);
+    // check if timer0 CCR2 did an interrupt
+    if(timer0_CCR2_interrupt == 1){
+      update_outputs(2);                // update outputs concerned by CCR2 PWM
+      timer0_CCR2_interrupt = 0;        // reset interrupt flag
     }
 
     // check if timer 1 did an interrupt
@@ -148,7 +161,6 @@ int main( void )
         adc_value = ADC10MEM;                                             // store last potentiometer converted value
         //send_event(POTENTIOMETER,POTENTIOMETER_UPDATE,adc_value,0);     // send event to the server
         adc_interrupt = 0;                                                // clear interrupt flag
-        ADC10CTL0 |= ENC + ADC10SC;                                       // restart a conversion cycle
       }
     #endif
   }
