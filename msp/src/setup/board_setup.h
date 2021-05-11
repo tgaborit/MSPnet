@@ -20,7 +20,7 @@
 #endif
   
 // uncomment if a potentiometer is used, and fill the pin (port is automatically 1)
-#define POTENTIO
+//#define POTENTIO
 #ifdef POTENTIO
   #define POTENTIO_PIN 0x02
 #endif

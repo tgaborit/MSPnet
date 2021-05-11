@@ -201,11 +201,11 @@ void comm_init()
 /* MQTT PUBLISH with input */
 void comm_MQTT_pub(uint8_t *payload)
 {
-  uint8_t data[83] = {
+  uint8_t data[89] = {
       // type 3
       0x30,
-      // remaining length 81
-      81,
+      // remaining length 87
+      87,
       // topic length
       0x00, 0x05,
       // topic name
@@ -215,12 +215,12 @@ void comm_MQTT_pub(uint8_t *payload)
   };
   
   // payload
-  memcpy(&data[10], payload, 73);
+  memcpy(&data[10], payload, 79);
   
-  // Prepare to send 83 byte
-  comm_UART_TX_str("AT+CIPSEND=83");
+  // Prepare to send 89 byte
+  comm_UART_TX_str("AT+CIPSEND=89");
   comm_delay_s(2);
   
-  // Send the 83 bytes
-  comm_UART_TX_raw(data, 83);
+  // Send the 89 bytes
+  comm_UART_TX_raw(data, 89);
 }

@@ -50,7 +50,7 @@ int main( void )
     ADC10CTL0 |= ENC + ADC10SC;   // adc first sampling and conversion start
   #endif
     
-  __bis_SR_register(LPM3_bits + GIE); // Enter LPM3 w/ interrupt
+//  __bis_SR_register(LPM3_bits + GIE); // Enter LPM3 w/ interrupt
   
   // main loop
   while(1){
@@ -108,7 +108,7 @@ int main( void )
           if(debounce(switch_pressed, 1, 0x08))
           {
             switch_pressed = (switch_pressed+1)%2;                              // set to 1 if pressed, 0 if released
-            //send_event(SWITCH_MCU,switch_pressed,0,switch_press_time);        // send event to the server
+            send_event(SWITCH_MCU,switch_pressed,0,switch_press_time);        // send event to the server
             switch_press_time = 0;                                              // reset press time
           }
         }
@@ -121,7 +121,7 @@ int main( void )
           if(debounce(ext_switch_1_pressed, EXT_PORT_1, EXT_PIN_1))
           {
             ext_switch_1_pressed = (ext_switch_1_pressed+1)%2;                                  // set to 1 if pressed, 0 if released
-            //send_event(SWITCH_MICRO_1, ext_switch_1_pressed,0,ext_switch_1_press_time);       // send event to the server
+            send_event(SWITCH_MICRO_1, ext_switch_1_pressed,0,ext_switch_1_press_time);       // send event to the server
             ext_switch_1_press_time = 0;                                                        // reset press time
           }
         }
@@ -134,7 +134,7 @@ int main( void )
           if(debounce(ext_switch_2_pressed, EXT_PORT_2, EXT_PIN_2))
           {
             ext_switch_2_pressed = (ext_switch_2_pressed+1)%2;                                  // set to 1 if pressed, 0 if released
-            //send_event(SWITCH_MICRO_2, ext_switch_2_pressed,0,ext_switch_2_press_time);       // send event to the server
+            send_event(SWITCH_MICRO_2, ext_switch_2_pressed,0,ext_switch_2_press_time);       // send event to the server
             ext_switch_2_press_time = 0;                                                        // reset press time
           }
         }
@@ -146,7 +146,7 @@ int main( void )
       // check if adc did an interrupt
       if (adc_interrupt == 1){
         adc_value = ADC10MEM;                                             // store last potentiometer converted value
-        //send_event(POTENTIOMETER,POTENTIOMETER_UPDATE,adc_value,0);     // send event to the server
+        send_event(POTENTIOMETER,POTENTIOMETER_UPDATE,adc_value,0);     // send event to the server
         adc_interrupt = 0;                                                // clear interrupt flag
         ADC10CTL0 |= ENC + ADC10SC;                                       // restart a conversion cycle
       }

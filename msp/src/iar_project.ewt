@@ -2156,6 +2156,12 @@
         </settings>
     </configuration>
     <file>
+        <name>$PROJ_DIR$\setup\board_setup.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\setup\board_setup.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\comm\comm.c</name>
     </file>
     <file>
@@ -2184,6 +2190,9 @@
     </file>
     <file>
         <name>$PROJ_DIR$\comm\mqtt_recv.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\outputs\outputs.c</name>
     </file>
     <file>
         <name>$PROJ_DIR$\outputs\outputs.h</name>

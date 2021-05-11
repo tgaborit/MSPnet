@@ -317,7 +317,7 @@
                 <option>
                     <name>CCAllowList</name>
                     <version>1</version>
-                    <state>00000</state>
+                    <state>10010</state>
                 </option>
                 <option>
                     <name>CCObjUseModuleName</name>
@@ -433,7 +433,7 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>0</state>
+                    <state>2</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
@@ -442,7 +442,7 @@
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>0</state>
+                    <state>2</state>
                 </option>
                 <option>
                     <name>CInput</name>
@@ -2298,6 +2298,12 @@
         </settings>
     </configuration>
     <file>
+        <name>$PROJ_DIR$\setup\board_setup.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\setup\board_setup.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\comm\comm.c</name>
     </file>
     <file>
@@ -2326,6 +2332,9 @@
     </file>
     <file>
         <name>$PROJ_DIR$\comm\mqtt_recv.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\outputs\outputs.c</name>
     </file>
     <file>
         <name>$PROJ_DIR$\outputs\outputs.h</name>

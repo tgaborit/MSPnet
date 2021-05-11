@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include "io430.h"
 #include "../common/type.h"
+#include "../comm/comm.h"
+
+#define DEVICE_ID 123
 
 // All the inputs that can be used on the microcontroller, according to our specifications.
 typedef enum Input_type{
