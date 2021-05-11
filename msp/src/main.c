@@ -1,8 +1,11 @@
-
+#include <string.h>
 #include "io430.h"
 #include "inputs/inputs.h"
 #include "outputs/outputs.h"
 #include "setup/board_setup.h"
+#include "comm/comm.h"
+#include "comm/mqtt_recv.h"
+#include "json/json_parser.h"
 
 
 #ifdef POTENTIO
@@ -29,6 +32,10 @@ int timer1_interrupt = 0;                       // boolean value indicating time
 int adc_interrupt = 0;                          // boolean value indicating adc interrupt
 int debounce_entity = 0;                        // value that keeps track of who is in debounce mode (0 for switch_0, 1 for ext_switch_1 and 2 for ext_switch_2)
 
+char rx_buffer[256] = {'\0'};
+int i_rx_buffer = 0;
+
+
 int main( void )
 {
   // Stop watchdog timer to prevent time out reset
@@ -37,6 +44,8 @@ int main( void )
   // setup all the input and output peripherals and devices
   full_setup();
   
+  comm_init();
+
   #ifdef POTENTIO
     ADC10CTL0 |= ENC + ADC10SC;   // adc first sampling and conversion start
   #endif
@@ -250,4 +259,26 @@ __interrupt void Timer1_A0 (void)
     LPM3_EXIT;                            // wake up main function
   }
 #endif
+
+
+// UART RX interrupt service routine
+#pragma vector=USCIAB0RX_VECTOR
+__interrupt void USCI0RX_ISR(void)
+{
+    char topic[TOPIC_MAX_LENGTH];
+    char payload[PAYLOAD_MAX_LENGTH];
+    uint8_t mqtt_message[100];
+  
+    rx_buffer[i_rx_buffer] = UCA0RXBUF;
+    i_rx_buffer++;
+    
+    if (rx_buffer[i_rx_buffer - 1] == '}')
+    {
+      memcpy(mqtt_message, &rx_buffer[11], 100);
+      mqtt_recv_publish(mqtt_message, topic, payload);
+      parse_message(payload);
+      
+      i_rx_buffer = 0;
+    }
+}   
 

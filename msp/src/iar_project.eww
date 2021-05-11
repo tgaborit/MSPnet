@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspace>
     <project>
+        <path>$WS_DIR$\..\..\..\..\Peripherals\chall3\chall3.ewp</path>
+    </project>
+    <project>
         <path>$WS_DIR$\iar_project.ewp</path>
     </project>
     <batchBuild />

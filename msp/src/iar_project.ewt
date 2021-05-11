@@ -2156,10 +2156,10 @@
         </settings>
     </configuration>
     <file>
-        <name>$PROJ_DIR$\setup\board_setup.c</name>
+        <name>$PROJ_DIR$\comm\comm.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\setup\board_setup.h</name>
+        <name>$PROJ_DIR$\comm\comm.h</name>
     </file>
     <file>
         <name>$PROJ_DIR$\inputs\inputs.c</name>
@@ -2168,10 +2168,22 @@
         <name>$PROJ_DIR$\inputs\inputs.h</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\json\jsmn.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\json\json_parser.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\json\json_parser.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\main.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\outputs\outputs.c</name>
+        <name>$PROJ_DIR$\comm\mqtt_recv.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\comm\mqtt_recv.h</name>
     </file>
     <file>
         <name>$PROJ_DIR$\outputs\outputs.h</name>
