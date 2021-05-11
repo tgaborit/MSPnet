@@ -105,6 +105,7 @@ static void set_D3(Output_type type, Output_trigger trig, Intensity intensity, D
   }
 }
 
+#ifdef BUZZ
 // Function that sets buzzer (ON/OFF depending on trigger).
 static void set_buzzer(Output_trigger trig, Intensity intensity, Duration duration){
   
@@ -144,6 +145,7 @@ static void set_buzzer(Output_trigger trig, Intensity intensity, Duration durati
     buzzer_PWM = 0;
   }
 }
+#endif
 
 // function that analyses a server message and calls other functions to modify the microc outputs consequently.
 void output(Output_type type, Output_trigger trigger, Intensity intensity, Duration duration){
