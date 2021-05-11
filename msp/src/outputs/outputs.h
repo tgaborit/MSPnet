@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "../common/type.h"
+#include "../setup/board_setup.h"
 
 // All the output components which can be triggered on the microcontroller, according to our specifications.
 typedef enum Output_type{
@@ -33,5 +34,8 @@ typedef struct Output_message{
 
 // function that analyses a server message and calls other functions to modify the microc outputs consequently.
 void output(Output_type type, Output_trigger trigger, Intensity intensity, Duration duration);
+
+// function that updates the outputs state (toggling leds and buzzer, checking if duration is not overlapped ...)
+void update_outputs(int mode);
 
 #endif //OUTPUTS_H
