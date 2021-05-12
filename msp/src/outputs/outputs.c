@@ -94,6 +94,7 @@ static void set_D3(Output_type type, Output_trigger trig, Intensity intensity, D
     else{
       LED_D3_timer = duration;
     }
+    P2OUT &= ~(command[0]);                             // reset first P2.1, P2.3 and P2.5
     P2OUT |= command[type-2];                           // set only P2.1, P2.3 and P2.5
   }
   
