@@ -73,7 +73,7 @@ void comm_delay_s(int delay)
 void comm_ESP_rst()
 {
   comm_UART_TX_str("AT+RST");
-  comm_delay_s(1);
+  comm_delay_s(3);
 }
 
 /* Setup of WiFi connection */

@@ -2310,6 +2310,9 @@
         <name>$PROJ_DIR$\comm\comm.h</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\..\..\config.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\inputs\inputs.c</name>
     </file>
     <file>

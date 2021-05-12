@@ -5,13 +5,9 @@
 #include <stdio.h>
 #include "io430.h"
 #include "../inputs/inputs.h"
+#include "../../../config.h"
 
 #define COMM_H
-
-#define WIFINETWORK  "HUAWEI P10 lite"
-#define WIFIPASSWORD "12345678"
-#define MQTTHOST     "ec2-3-8-210-204.eu-west-2.compute.amazonaws.com"
-#define MQTTPORT     "1883"
 
 
 void comm_UART_init();

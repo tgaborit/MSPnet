@@ -10,33 +10,33 @@
 
 #ifdef POTENTIO
   unsigned short adc_value = 0x0000;            // last registered adc value from potentiometer
-  int adc_counter = 50;                         // 50 ms counter before restarting an adc cycle
+  uint8_t adc_counter = 50;                         // 50 ms counter before restarting an adc cycle
 #endif
 
 #ifdef SWITCH_0
-  int switch_pressed = 0;                       // boolean value indicating a pressed switch
+  uint8_t switch_pressed = 0;                       // boolean value indicating a pressed switch
   unsigned short switch_press_time = 0;         // counter to record how many time (in ms) the switch is held      
 #endif
 
 #ifdef EXT_SWITCH_1
-  int ext_switch_1_pressed = 0;                 // boolean value indicating a pressed switch
+  uint8_t ext_switch_1_pressed = 0;                 // boolean value indicating a pressed switch
   unsigned short ext_switch_1_press_time = 0;   // counter to record how many time (in ms) the switch is held
 #endif
 
 #ifdef EXT_SWITCH_2
-  int ext_switch_2_pressed = 0;                 // boolean value indicating a pressed switch
+  uint8_t ext_switch_2_pressed = 0;                 // boolean value indicating a pressed switch
   unsigned short ext_switch_2_press_time = 0;   // counter to record how many time (in ms) the switch is held
 #endif
 
-int timer0_interrupt = 0;                       // boolean value indicating timer 0 A0 interrupt
-int timer0_CCR1_interrupt = 0;                  // boolean value indicating timer 0 A0 CCR1 interrupt
-int timer0_CCR2_interrupt = 0;                  // boolean value indicating timer 0 A0 CCR2 interrupt
-int timer1_interrupt = 0;                       // boolean value indicating timer 1 A0 interrupt
-int adc_interrupt = 0;                          // boolean value indicating adc interrupt
-int debounce_entity = 0;                        // value that keeps track of who is in debounce mode (0 for switch_0, 1 for ext_switch_1 and 2 for ext_switch_2)
+uint8_t timer0_interrupt = 0;                       // boolean value indicating timer 0 A0 interrupt
+uint8_t timer0_CCR1_interrupt = 0;                  // boolean value indicating timer 0 A0 CCR1 interrupt
+uint8_t timer0_CCR2_interrupt = 0;                  // boolean value indicating timer 0 A0 CCR2 interrupt
+uint8_t timer1_interrupt = 0;                       // boolean value indicating timer 1 A0 interrupt
+uint8_t adc_interrupt = 0;                          // boolean value indicating adc interrupt
+uint8_t debounce_entity = 0;                        // value that keeps track of who is in debounce mode (0 for switch_0, 1 for ext_switch_1 and 2 for ext_switch_2)
 
-char rx_buffer[95] = {'\0'};
-int i_rx_buffer = 0;
+char rx_buffer[95] = {'\0'};                    // buffer for UART data received before processing
+uint8_t i_rx_buffer = 0;                            // index of this buffer
 
 
 int main( void )
@@ -53,7 +53,9 @@ int main( void )
     ADC10CTL0 |= ENC + ADC10SC;   // adc first sampling and conversion start
   #endif
     
-//  __bis_SR_register(LPM3_bits + GIE); // Enter LPM3 w/ interrupt
+  output(LED_D1, ON, 0, 2000); // LED showing that the device is ready
+    
+  __bis_SR_register(LPM3_bits + GIE); // Enter LPM3 w/ interrupt
   
   // main loop
   while(1){
@@ -174,7 +176,6 @@ int main( void )
     #endif
   }
   
-  while(1);
   
   return 0;
 }
@@ -264,11 +265,26 @@ __interrupt void Timer0_A0 (void)
                   break;
     case 4:       timer0_CCR2_interrupt = 1;    // update interrupt flag
                   break;
-    default:      if(TA0CCTL0 & CCIFG){
+    default:      //if(TA0CCTL0 & CCIFG){
                     timer0_interrupt = 1;         // update interrupt flag
-                  }
+                  //}
                   break;
   }
+//    if((TA0CCTL0 & CCIFG) || (TA0CTL & TAIFG)){
+//       timer0_interrupt = 1;         // update interrupt flag
+//    }
+//    if(TA0CCTL1 & CCIFG){
+//       timer0_CCR1_interrupt = 1;         // update interrupt flag
+//    }
+//    if(TA0CCTL2 & CCIFG){
+//       timer0_CCR2_interrupt = 1;         // update interrupt flag
+//    }
+  
+//  TA0CCTL0 &= ~(CCIFG); 
+//  TA0CCTL1 &= ~(CCIFG); 
+//  TA0CCTL2 &= ~(CCIFG); 
+//  TA0CTL &= ~(TAIFG); 
+    
   LPM3_EXIT;
 }
 
@@ -298,27 +314,24 @@ __interrupt void Timer1_A0 (void)
 #pragma vector=USCIAB0RX_VECTOR
 __interrupt void USCI0RX_ISR(void)
 {
-    char* topic = NULL;
-    char* payload = NULL;
-    uint8_t* mqtt_message = NULL;
     static uint8_t i_start_payload;
     
     rx_buffer[i_rx_buffer] = UCA0RXBUF;
     i_rx_buffer++;
     
-    if (rx_buffer[i_rx_buffer - 1] == '{')
+    if (rx_buffer[i_rx_buffer - 1] == '{') // the index of the beginning of the JSON is saved
       i_start_payload = i_rx_buffer - 1;
     
-    if (rx_buffer[i_rx_buffer - 1] == '}')
+    if (rx_buffer[i_rx_buffer - 1] == '}') // end of JSON and MQTT PUBLISH message
     {
-      mqtt_message = (uint8_t*)(&rx_buffer[i_start_payload - 13]);
-      mqtt_recv_publish(mqtt_message, topic, payload);
-      parse_message(rx_buffer+i_start_payload);
+//      mqtt_message = (uint8_t*)(&rx_buffer[i_start_payload - 13]); // start of MQTT message
+//      mqtt_recv_publish(mqtt_message, topic, payload); // extraction of topic and payload data
+      parse_message(rx_buffer+i_start_payload); // payload is parsed and the appropriate function is called
       
-      i_rx_buffer = 0;
+      i_rx_buffer = 0; // we can now overwrite the buffer 
     }
     
-    if(i_rx_buffer == 255)
+    if(i_rx_buffer == 95) // for preventing buffer overflow
       i_rx_buffer = 0;
 }   
 

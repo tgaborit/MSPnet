@@ -5,8 +5,8 @@
 #include "inputs.h"
 
 // function to modify variables and switch registers after a debounce operation. It returns 1 if a press/release occured
-int debounce(int pressed, int port, int pin){
-  int result = 0;
+uint8_t debounce(uint8_t pressed, uint8_t port, uint8_t pin){
+  uint8_t result = 0;
   
   // go in code section corresponding to actual port
   if(port == 1){

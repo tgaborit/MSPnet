@@ -1,237 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>4</fileVersion>
-    <fileChecksum>2062566278</fileChecksum>
+    <fileChecksum>2093814323</fileChecksum>
     <configuration>
         <name>Debug</name>
         <outputs>
-            <file>$PROJ_DIR$\Debug\Obj\inputs.xcl</file>
-            <file>$PROJ_DIR$\mqtt-c\parser.h</file>
-            <file>$TOOLKIT_DIR$\inc\io430.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\errors.r43</file>
-            <file>$PROJ_DIR$\Debug\Obj\parser.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
-            <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.r43</file>
-            <file>$PROJ_DIR$\Debug\Exe\iar_project.ulp</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\stdio.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\stdlib.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\json_parser.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\ymath.h</file>
-            <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\math.h</file>
-            <file>$PROJ_DIR$\common\type.h</file>
-            <file>$PROJ_DIR$\comm\mqtt_recv.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
-            <file>$PROJ_DIR$\outputs\outputs.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\ysizet.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\stddef.h</file>
             <file>$PROJ_DIR$\mqtt-c\errors.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\stdint.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\json_parser.xcl</file>
             <file>$PROJ_DIR$\Debug\Obj\inputs.r43</file>
-            <file>$PROJ_DIR$\outputs\outputs.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\buffer.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\board_setup.r43</file>
             <file>$PROJ_DIR$\mqtt-c\buffer.c</file>
             <file>$PROJ_DIR$\Debug\Obj\board_setup.xcl</file>
+            <file>$PROJ_DIR$\Debug\Obj\inputs.xcl</file>
+            <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
             <file>$PROJ_DIR$\Debug\Obj\parser.r43</file>
             <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
             <file>$PROJ_DIR$\Debug\Obj\main.xcl</file>
-            <file>$PROJ_DIR$\json\json_parser.h</file>
-            <file>$PROJ_DIR$\main.c</file>
-            <file>$PROJ_DIR$\comm\mqtt_recv.c</file>
-            <file>$PROJ_DIR$\comm\comm.c</file>
-            <file>$PROJ_DIR$\inputs\inputs.c</file>
-            <file>$PROJ_DIR$\setup\board_setup.c</file>
-            <file>$PROJ_DIR$\setup\board_setup.h</file>
-            <file>$PROJ_DIR$\inputs\inputs.h</file>
-            <file>$PROJ_DIR$\comm\comm.h</file>
-            <file>$PROJ_DIR$\json\jsmn.h</file>
-            <file>$PROJ_DIR$\json\json_parser.c</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\stddef.h</file>
+            <file>$PROJ_DIR$\mqtt-c\parser.h</file>
+            <file>$PROJ_DIR$\common\type.h</file>
             <file>$PROJ_DIR$\Debug\Obj\comm.xcl</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\stdio.h</file>
             <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
-            <file>$TOOLKIT_DIR$\inc\io430g2553.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\message.r43</file>
-            <file>$TOOLKIT_DIR$\config\linker\lnk430g2553.xcl</file>
-            <file>$PROJ_DIR$\mqtt-c\buffer.h</file>
-            <file>$PROJ_DIR$\mqtt-c\message.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\ystdio.h</file>
-            <file>$PROJ_DIR$\Debug\List\iar_project.map</file>
-            <file>$PROJ_DIR$\Debug\Obj\mqtt_recv.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\comm.__cstat.et</file>
-            <file>$PROJ_DIR$\mqtt-c\parser.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\mqtt_recv.r43</file>
-            <file>$PROJ_DIR$\Debug\Obj\json_parser.__cstat.et</file>
-            <file>$PROJ_DIR$\Debug\Obj\message.xcl</file>
-            <file>$PROJ_DIR$\Debug\Exe\iar_project.d43</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\stdlib.h</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\math.h</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
+            <file>$PROJ_DIR$\outputs\outputs.h</file>
+            <file>$TOOLKIT_DIR$\inc\io430.h</file>
+            <file>$PROJ_DIR$\Debug\Exe\iar_project.ulp</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\stdint.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\buffer.xcl</file>
+            <file>$PROJ_DIR$\Debug\Obj\board_setup.r43</file>
+            <file>$PROJ_DIR$\Debug\Obj\errors.r43</file>
+            <file>$PROJ_DIR$\Debug\Obj\parser.xcl</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\ymath.h</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
+            <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.r43</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\ysizet.h</file>
+            <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.h</file>
+            <file>$PROJ_DIR$\setup\board_setup.c</file>
+            <file>$PROJ_DIR$\comm\comm.c</file>
+            <file>$PROJ_DIR$\comm\mqtt_recv.h</file>
+            <file>$PROJ_DIR$\outputs\outputs.c</file>
+            <file>$PROJ_DIR$\setup\board_setup.h</file>
+            <file>$PROJ_DIR$\comm\comm.h</file>
+            <file>$PROJ_DIR$\json\json_parser.h</file>
+            <file>$PROJ_DIR$\json\jsmn.h</file>
+            <file>$PROJ_DIR$\inputs\inputs.c</file>
+            <file>$PROJ_DIR$\main.c</file>
+            <file>$PROJ_DIR$\inputs\inputs.h</file>
+            <file>$PROJ_DIR$\json\json_parser.c</file>
+            <file>$PROJ_DIR$\comm\mqtt_recv.c</file>
+            <file>$PROJ_DIR$\Debug\Obj\board_setup.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\serialiser.r43</file>
+            <file>$PROJ_DIR$\Debug\Obj\buffer.r43</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\string.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\comm.r43</file>
+            <file>$PROJ_DIR$\Debug\Obj\outputs.xcl</file>
             <file>$PROJ_DIR$\mqtt-c\message.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\inputs.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\message.r43</file>
+            <file>$PROJ_DIR$\mqtt-c\buffer.h</file>
+            <file>$PROJ_DIR$\mqtt-c\serialiser.h</file>
+            <file>$PROJ_DIR$\mqtt-c\message.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\errors.xcl</file>
+            <file>$PROJ_DIR$\Debug\Obj\json_parser.r43</file>
+            <file>$PROJ_DIR$\Debug\Obj\mqtt_recv.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\mqtt_recv.r43</file>
+            <file>$PROJ_DIR$\Debug\List\iar_project.map</file>
+            <file>$PROJ_DIR$\Debug\Exe\iar_project.d43</file>
+            <file>$PROJ_DIR$\Debug\Obj\mqtt_recv.xcl</file>
+            <file>$PROJ_DIR$\mqtt-c\parser.c</file>
             <file>$PROJ_DIR$\Debug\Obj\outputs.r43</file>
             <file>$PROJ_DIR$\Debug\Obj\serialiser.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\iar_project.pbd</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\ystdio.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\comm.__cstat.et</file>
             <file>$TOOLKIT_DIR$\inc\dlib\c\xencoding_limits.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\outputs.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
             <file>$TOOLKIT_DIR$\inc\dlib\c\xtgmath.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\errors.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\mqtt_recv.__cstat.et</file>
-            <file>$PROJ_DIR$\Debug\Obj\json_parser.r43</file>
+            <file>$TOOLKIT_DIR$\config\linker\lnk430g2553.xcl</file>
+            <file>$PROJ_DIR$\Debug\Obj\outputs.__cstat.et</file>
             <file>$PROJ_DIR$\mqtt-c\errors.c</file>
-            <file>$PROJ_DIR$\mqtt-c\serialiser.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\inputs.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\iar_project.pbd</file>
+            <file>$PROJ_DIR$\Debug\Obj\json_parser.__cstat.et</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
             <file>$PROJ_DIR$\mqtt-c\serialiser.c</file>
-            <file>$TOOLKIT_DIR$\inc\dlib\c\string.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\buffer.r43</file>
-            <file>$PROJ_DIR$\Debug\Obj\board_setup.__cstat.et</file>
-            <file>$PROJ_DIR$\Debug\Obj\outputs.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\comm.r43</file>
-            <file>$PROJ_DIR$\Debug\Obj\serialiser.r43</file>
+            <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\message.xcl</file>
+            <file>$TOOLKIT_DIR$\inc\io430g2553.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
+            <file>$PROJ_DIR$\..\..\config.h</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
             <outputs>
                 <tool>
-                    <name>XLINK</name>
-                    <file> 58 51</file>
-                </tool>
-                <tool>
                     <name>ULP430</name>
-                    <file> 7</file>
+                    <file> 21</file>
+                </tool>
+                <tool>
+                    <name>XLINK</name>
+                    <file> 61 60</file>
                 </tool>
             </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\outputs\outputs.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 61</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 65</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 79</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 18 22 67 17 44 13 66 64 5 15 38 2 45 11</file>
-                </tool>
-            </inputs>
         </file>
         <file>
             <name>$PROJ_DIR$\mqtt-c\buffer.c</name>
             <outputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 77</file>
+                    <file> 47</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 25</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 8 67 17 44 13 66 64 5 19 50 48 22</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\main.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 30</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 74</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 31</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 76 67 17 44 13 66 64 5 19 2 45 11 39 22 15 40 8 50 18 38 16 32</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\comm\mqtt_recv.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 55</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 70</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 52</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 22 67 17 44 13 66 64 5 9 19 76 16</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\comm\comm.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 80</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 53</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 43</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 40 22 67 17 44 13 66 64 5 76 19 8 50 2 45 11 39 15</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\inputs\inputs.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC430</name>
                     <file> 23</file>
                 </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 60</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 0</file>
-                </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 76 67 17 44 13 66 64 5 19 9 8 50 39 22 2 45 11 15 40</file>
+                    <file> 14 76 28 15 31 78 68 18 30 66 53 22</file>
                 </tool>
             </inputs>
         </file>
@@ -240,53 +126,11 @@
             <outputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 26</file>
+                    <file> 24</file>
                 </tool>
                 <tool>
                     <name>__cstat</name>
-                    <file> 78</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 28</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 38 2 45 11</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\json\json_parser.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 71</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 56</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 10</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 8 67 17 44 13 66 64 5 19 50 9 76 22 41 20 18 15 38 2 45 11 32</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\mqtt-c\parser.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 29</file>
+                    <file> 45</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
@@ -296,69 +140,135 @@
             <inputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 22 67 17 44 13 66 64 5 20 19 76 14 12 68 21 49 48 1</file>
+                    <file> 36 20 80 6 82</file>
                 </tool>
             </inputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\Debug\Exe\iar_project.d43</name>
+            <name>$PROJ_DIR$\comm\comm.c</name>
             <outputs>
                 <tool>
-                    <name>XLINK</name>
-                    <file> 51</file>
+                    <name>ICC430</name>
+                    <file> 49</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 67</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 13</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
-                    <name>XLINK</name>
-                    <file> 47 26 80 23 71 30 55 61 6</file>
+                    <name>ICC430</name>
+                    <file> 37 22 76 28 15 31 78 68 18 48 30 14 66 20 80 6 42 12 82</file>
                 </tool>
             </inputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\mqtt-c\message.c</name>
+            <name>$PROJ_DIR$\outputs\outputs.c</name>
             <outputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 46</file>
+                    <file> 64</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 71</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
+                    <file> 50</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 19 22 76 28 15 31 78 68 18 12 36 20 80 6 82</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\inputs\inputs.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 2</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 73</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 5</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 48 76 28 15 31 78 68 18 30 16 14 66 42 22 20 80 6 12 37 82</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\main.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 8</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 81</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 9</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 48 76 28 15 31 78 68 18 30 20 80 6 42 22 12 37 14 66 82 19 36 34 38</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\json\json_parser.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC430</name>
                     <file> 57</file>
                 </tool>
-            </outputs>
-            <inputs>
                 <tool>
-                    <name>ICC430</name>
-                    <file> 76 67 17 44 13 66 64 5 19 8 50 49 22 48</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\mqtt-c\errors.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC430</name>
-                    <file> 3</file>
+                    <name>__cstat</name>
+                    <file> 75</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 69</file>
+                    <file> 1</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 20 67 17 44 13 66 64 5 19 21</file>
+                    <file> 14 76 28 15 31 78 68 18 30 66 16 48 22 39 10 19 12 36 20 80 6 82 38</file>
                 </tool>
             </inputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\mqtt-c\serialiser.c</name>
+            <name>$PROJ_DIR$\comm\mqtt_recv.c</name>
             <outputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 81</file>
+                    <file> 59</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 58</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
@@ -368,7 +278,98 @@
             <inputs>
                 <tool>
                     <name>ICC430</name>
-                    <file> 76 67 17 44 13 66 64 5 19 49 22 48 73 21</file>
+                    <file> 22 76 28 15 31 78 68 18 16 30 48 34</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\mqtt-c\message.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 52</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 79</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 48 76 28 15 31 78 68 18 30 14 66 55 22 53</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Debug\Exe\iar_project.d43</name>
+            <outputs>
+                <tool>
+                    <name>XLINK</name>
+                    <file> 60</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>XLINK</name>
+                    <file> 70 24 49 2 57 8 59 64 29</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\mqtt-c\parser.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 7</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 26</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 22 76 28 15 31 78 68 18 10 30 48 17 27 69 0 55 53 11</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\mqtt-c\errors.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 25</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 56</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 10 76 28 15 31 78 68 18 30 0</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\mqtt-c\serialiser.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 46</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 65</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC430</name>
+                    <file> 48 76 28 15 31 78 68 18 30 55 22 53 54 0</file>
                 </tool>
             </inputs>
         </file>

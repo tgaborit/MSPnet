@@ -5,8 +5,7 @@
 #include "io430.h"
 #include "../common/type.h"
 #include "../comm/comm.h"
-
-#define DEVICE_ID '1'
+#include "../../../config.h"
 
 // All the inputs that can be used on the microcontroller, according to our specifications.
 typedef enum Input_type{
@@ -36,6 +35,6 @@ typedef struct Input_message{
 void send_event(Input_type type, Input_event event, Intensity intensity, Duration duration_ms);
 
 // function to modify variables and switch registers after a debounce operation. It returns 1 if a press/release occured
-int debounce(int pressed, int port, int pin);
+uint8_t debounce(uint8_t pressed, uint8_t port, uint8_t pin);
 
 #endif //INPUTS_H

@@ -23,7 +23,7 @@
 //  MQTT_TYPE_DISCONNECT = 14,
 //} mqtt_type_t;
 
-///* processes conneck messages
+//* processes conneck messages
 // * reutrns 1 is connection succeeded, 0 otherwise*/
 //int mqt_recv_connack(uint8_t* data);
 
