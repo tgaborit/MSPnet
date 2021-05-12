@@ -225,7 +225,6 @@ void comm_MQTT_init()
 void comm_init()
 {
   comm_UART_init();
-//  IE2 &= ~UCA0RXIE; // Disable UART RX interrupt before we send data
   
   
   comm_delay_s(1);
@@ -256,6 +255,9 @@ void comm_MQTT_pub_event(uint8_t *payload)
       0x00
   };
   
+  IE2 &= ~UCA0RXIE;
+  comm_delay_s(1);
+  
   // payload
   memcpy(&data[10], payload, 74);
   
@@ -266,4 +268,6 @@ void comm_MQTT_pub_event(uint8_t *payload)
   // Send the 84 bytes
   comm_UART_TX_raw(data, 84);
   comm_delay_s(2);
+  
+  IE2 |= UCA0RXIE;
 }

@@ -309,7 +309,6 @@ __interrupt void USCI0RX_ISR(void)
     if (rx_buffer[i_rx_buffer - 1] == '}')
     {
       mqtt_message = (uint8_t*)(&rx_buffer[i_start_payload - 13]);
-//      memcpy(mqtt_message, &rx_buffer[11], 90);
       mqtt_recv_publish(mqtt_message, topic, payload);
       parse_message(rx_buffer+i_start_payload);
       
