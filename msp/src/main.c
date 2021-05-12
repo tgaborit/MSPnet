@@ -120,8 +120,8 @@ int main( void )
           // checks if switch_0 has been pressed/released
           if(debounce(switch_pressed, 1, 0x08))
           {
-            switch_pressed = (switch_pressed+1)%2;                              // set to 1 if pressed, 0 if released
             //send_event(SWITCH_MCU,switch_pressed,0,switch_press_time);        // send event to the server
+            switch_pressed = (switch_pressed+1)%2;                              // set to 1 if pressed, 0 if released
             switch_press_time = 0;                                              // reset press time
           }
         }
@@ -133,8 +133,8 @@ int main( void )
           // checks if ext_switch_1 has been pressed/released
           if(debounce(ext_switch_1_pressed, EXT_PORT_1, EXT_PIN_1))
           {
-            ext_switch_1_pressed = (ext_switch_1_pressed+1)%2;                                  // set to 1 if pressed, 0 if released
             //send_event(SWITCH_MICRO_1, ext_switch_1_pressed,0,ext_switch_1_press_time);       // send event to the server
+            ext_switch_1_pressed = (ext_switch_1_pressed+1)%2;                                  // set to 1 if pressed, 0 if released
             ext_switch_1_press_time = 0;                                                        // reset press time
           }
         }
@@ -146,8 +146,8 @@ int main( void )
           // checks if ext_switch_2 has been pressed/released
           if(debounce(ext_switch_2_pressed, EXT_PORT_2, EXT_PIN_2))
           {
-            ext_switch_2_pressed = (ext_switch_2_pressed+1)%2;                                  // set to 1 if pressed, 0 if released
             //send_event(SWITCH_MICRO_2, ext_switch_2_pressed,0,ext_switch_2_press_time);       // send event to the server
+            ext_switch_2_pressed = (ext_switch_2_pressed+1)%2;                                  // set to 1 if pressed, 0 if released
             ext_switch_2_press_time = 0;                                                        // reset press time
           }
         }
