@@ -236,8 +236,8 @@ void update_outputs(int mode){
         P2OUT ^= BUZZ_PIN;     // toggle only P2.x
       }
     }
+#endif
   }
-#endif BUZZ
   else{
     D3_PWM = 0;         // else reset led parameters
 #ifdef BUZZ
@@ -247,7 +247,7 @@ void update_outputs(int mode){
     else{
       P2OUT &= ~(BUZZ_PIN);     // reset only P2.x
     }
-#endif BUZZ
+#endif
   }
   if((D1_PWM == 0) && (D2_PWM == 0) && (D3_PWM == 0)){
     TA0CCTL1 &= ~(CCIE);        // timer A0 CCR1 interrupt disable
@@ -256,5 +256,5 @@ void update_outputs(int mode){
   if(buzzer_PWM == 0){
     TA0CCTL2 &= ~(CCIE);            // timer A0 CCR2 interrupt enabled (compare mode)
   }
-#endif BUZZ
+#endif
 }
