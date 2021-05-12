@@ -63,9 +63,7 @@ int main( void )
     
     // check if timer 0 did an interrupt
     if(timer0_interrupt == 1)
-    {
-      timer0_interrupt = 0;           // clear interrupt flag
-      
+    {      
       // update switches press time if they are used and in press state
       #ifdef SWITCH_0
         if(switch_pressed == 1 && switch_press_time < 65535)
@@ -98,6 +96,8 @@ int main( void )
         }
         --adc_counter;
       #endif
+        
+      timer0_interrupt = 0;           // clear interrupt flag
     }
     
     // check if timer0 CCR1 did an interrupt
@@ -253,7 +253,10 @@ __interrupt void Timer0_A0 (void)
                   break;
     case 4:       timer0_CCR2_interrupt = 1;    // update interrupt flag
                   break;
-    default:      timer0_interrupt = 1;         // update interrupt flag
+    default:      if(TA0CCTL0 & CCIFG){
+                    timer0_interrupt = 1;         // update interrupt flag
+                  }
+                  break;
   }
   LPM3_EXIT;
 }

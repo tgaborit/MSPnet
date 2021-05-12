@@ -100,7 +100,7 @@ static void set_D3(Output_type type, Output_trigger trig, Intensity intensity, D
   
   // if trigger is OFF, reset led.
   else{
-    P2OUT &= ~(command[type-2]);                        // reset only P2.1, P2.3 and P2.5
+    P2OUT &= ~(command[0]);                             // reset only P2.1, P2.3 and P2.5
     LED_D3_timer = 0;                                   // reset the timer
     D3_PWM = 0;
   }
@@ -238,5 +238,11 @@ void update_outputs(int mode){
     else{
       P2OUT &= ~(BUZZ_PIN);     // reset only P2.x
     }
+  }
+  if((D1_PWM == 0) && (D2_PWM == 0) && (D3_PWM == 0)){
+    TA0CCTL1 &= ~(CCIE);        // timer A0 CCR1 interrupt disable
+  }
+  if(buzzer_PWM == 0){
+    TA0CCTL2 &= ~(CCIE);            // timer A0 CCR2 interrupt enabled (compare mode)
   }
 }
