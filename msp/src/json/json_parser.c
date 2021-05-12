@@ -22,26 +22,26 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 
 
 
-/* Returns 1 if token t of json_string is an 1-character integer, 0 otherwise */
-static int is_int(char* json_string, jsmntok_t* t) {
-  
-  /* token must be a number (which is a JSMN primitive) */
-  if (t->type != JSMN_PRIMITIVE) {
-    return 0;
-  }
-  
-  /* token must be a single char */
-  if (t->end - t->start != 1) {
-    return 0;
-  }
-  
-  /* token must be between 0 and 9 */
-  if (json_string[t->start] < '0' || json_string[t->start] > '9') {
-    return 0;
-  }
-  
-  return 1;
-}
+///* Returns 1 if token t of json_string is an 1-character integer, 0 otherwise */
+//static int is_int(char* json_string, jsmntok_t* t) {
+//  
+//  /* token must be a number (which is a JSMN primitive) */
+//  if (t->type != JSMN_PRIMITIVE) {
+//    return 0;
+//  }
+//  
+//  /* token must be a single char */
+//  if (t->end - t->start != 1) {
+//    return 0;
+//  }
+//  
+//  /* token must be between 0 and 9 */
+//  if (json_string[t->start] < '0' || json_string[t->start] > '9') {
+//    return 0;
+//  }
+//  
+//  return 1;
+//}
 
 
 
@@ -51,7 +51,7 @@ static int parse_json(char* json_string, Output_message* output_message) {
   int i;            // loop iterator
   int r;            // number of tokens found by the parser when parsing
   jsmn_parser p;    // jsmn parser
-  jsmntok_t t[16];  // holds the list of tokens found by the parser
+  jsmntok_t t[10];  // holds the list of tokens found by the parser
   
   /* initialise jsmn parser */
   jsmn_init(&p);
@@ -60,7 +60,7 @@ static int parse_json(char* json_string, Output_message* output_message) {
   
   /* JSON PARSING */
   /* parse input json string */
-  r = jsmn_parse(&p, json_string, strlen(json_string), t,
+  r = jsmn_parse(&p, json_string, JSON_STRING_LENGTH, t,
                  sizeof(t) / sizeof(t[0]));
   
   /* if parsing failed */
@@ -82,10 +82,10 @@ static int parse_json(char* json_string, Output_message* output_message) {
     /* TYPE field */
     if (jsoneq(json_string, &t[i], "type") == 1) {
       
-      /* TYPE should be a 1-char integer */
-      if (! is_int(json_string, &t[i+1])) {
-        return EXIT_FAILURE;
-      }
+//      /* TYPE should be a 1-char integer */
+//      if (! is_int(json_string, &t[i+1])) {
+//        return EXIT_FAILURE;
+//      }
       
       /* convert TYPE field into an integer */
       output_message->type = (Output_type)atoi(&json_string[t[i+1].start]);
@@ -96,10 +96,10 @@ static int parse_json(char* json_string, Output_message* output_message) {
     /* TRIGGER field */
     } else if (jsoneq(json_string, &t[i], "trigger") == 1) {
       
-      /* TRIGGER should be a 1-char integer */
-      if (! is_int(json_string, &t[i+1])) {
-        return EXIT_FAILURE;
-      }
+//      /* TRIGGER should be a 1-char integer */
+//      if (! is_int(json_string, &t[i+1])) {
+//        return EXIT_FAILURE;
+//      }
       
       /* convert TRIGGER field into an integer */
       output_message->trigger = (Output_trigger)atoi(&json_string[t[i+1].start]);
@@ -138,7 +138,7 @@ int parse_message(char* message) {
   
   /* Parse JSON message */
   r = parse_json(message, &output_message);
-  if(!r) {
+  if(r) {
     return EXIT_FAILURE;
   }
   

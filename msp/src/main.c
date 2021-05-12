@@ -35,7 +35,7 @@ int timer1_interrupt = 0;                       // boolean value indicating time
 int adc_interrupt = 0;                          // boolean value indicating adc interrupt
 int debounce_entity = 0;                        // value that keeps track of who is in debounce mode (0 for switch_0, 1 for ext_switch_1 and 2 for ext_switch_2)
 
-char rx_buffer[256] = {'\0'};
+char rx_buffer[95] = {'\0'};
 int i_rx_buffer = 0;
 
 
@@ -173,7 +173,9 @@ int main( void )
       }
     #endif
   }
-    
+  
+  while(1);
+  
   return 0;
 }
 
@@ -293,20 +295,28 @@ __interrupt void Timer1_A0 (void)
 #pragma vector=USCIAB0RX_VECTOR
 __interrupt void USCI0RX_ISR(void)
 {
-    char topic[TOPIC_MAX_LENGTH];
-    char payload[PAYLOAD_MAX_LENGTH];
-    uint8_t mqtt_message[100];
-  
+    char* topic = NULL;
+    char* payload = NULL;
+    uint8_t* mqtt_message = NULL;
+    static uint8_t i_start_payload;
+    
     rx_buffer[i_rx_buffer] = UCA0RXBUF;
     i_rx_buffer++;
     
+    if (rx_buffer[i_rx_buffer - 1] == '{')
+      i_start_payload = i_rx_buffer - 1;
+    
     if (rx_buffer[i_rx_buffer - 1] == '}')
     {
-      memcpy(mqtt_message, &rx_buffer[11], 100);
+      mqtt_message = (uint8_t*)(&rx_buffer[i_start_payload - 13]);
+//      memcpy(mqtt_message, &rx_buffer[11], 90);
       mqtt_recv_publish(mqtt_message, topic, payload);
-      parse_message(payload);
+      parse_message(rx_buffer+i_start_payload);
       
       i_rx_buffer = 0;
     }
+    
+    if(i_rx_buffer == 255)
+      i_rx_buffer = 0;
 }   
 

@@ -160,7 +160,11 @@ void output(Output_type type, Output_trigger trigger, Intensity intensity, Durat
   case 5:       ;
   case 6:       set_D3(type, trigger, intensity, duration);   
                 break;
-  case 7:       set_buzzer(trigger, intensity, duration);
+  case 7:       
+#ifdef BUZZ
+                set_buzzer(trigger, intensity, duration)
+#endif  
+                ;
   }
 }
 
@@ -214,7 +218,8 @@ void update_outputs(int mode){
     D3_PWM = 0;         // else reset led parameters
     P2OUT &= ~(0x2A);
   }
-  
+
+#ifdef BUZZ
   // check if timer is still good for buzzer and update it
   if(buzzer_timer != 0){
    // update timer in case of finite duration
@@ -240,4 +245,5 @@ void update_outputs(int mode){
       P2OUT &= ~(BUZZ_PIN);     // reset only P2.x
     }
   }
+#endif
 }

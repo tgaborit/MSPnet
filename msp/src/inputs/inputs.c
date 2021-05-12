@@ -48,12 +48,12 @@ int debounce(int pressed, int port, int pin){
 
 void send_event(Input_type type, Input_event event, Intensity intensity, Duration duration_ms){
   
-  char json_string[128];  // final json string
+  char json_string[74];  // final json string
   char tmp[10];           // temporary variable holding int as strings
   
   /* Device ID */
   strcpy(json_string, "{\"id\":");
-  sprintf(tmp, "\"%.3u\"", DEVICE_ID);
+  sprintf(tmp, "\"%c\"", DEVICE_ID);
   strcat(json_string, tmp);
   
   /* TYPE */

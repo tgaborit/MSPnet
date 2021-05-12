@@ -100,15 +100,15 @@
                 </option>
                 <option>
                     <name>GStackHeapOverride</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>GStackSize2</name>
-                    <state>80</state>
+                    <state>230</state>
                 </option>
                 <option>
                     <name>GHeapSize2</name>
-                    <state>80</state>
+                    <state>8</state>
                 </option>
                 <option>
                     <name>RadioDataModelType</name>
@@ -317,7 +317,7 @@
                 <option>
                     <name>CCAllowList</name>
                     <version>1</version>
-                    <state>10010</state>
+                    <state>11111</state>
                 </option>
                 <option>
                     <name>CCObjUseModuleName</name>
@@ -421,7 +421,7 @@
                 </option>
                 <option>
                     <name>ReduceStack</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>Save20bit</name>
@@ -433,16 +433,16 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>2</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
                     <version>0</version>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>2</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CInput</name>

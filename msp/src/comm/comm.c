@@ -126,7 +126,7 @@ void comm_MQTT_conn()
       0x00,
       // client id
       0x00, 0x01,
-      '1'
+      DEVICE_ID
   };
   
   // Prepare to send 16 bytes
@@ -153,7 +153,7 @@ void comm_MQTT_sub()
       0x00,
       // length topic filter
       0x00, 0x08,
-      'O', 'U', 'T', 'P', 'U', 'T', '/', '1',
+      'O', 'U', 'T', 'P', 'U', 'T', '/', DEVICE_ID,
       // subscription options
       0x00,
   };
@@ -170,11 +170,11 @@ void comm_MQTT_sub()
 
 void comm_MQTT_id()
 {
-  uint8_t data[20] = {
+  uint8_t data[18] = {
       // type 3
       0x30,
-      // remaining length xx
-      18,
+      // remaining length 16
+      16,
       // topic length
       0x00, 0x03,
       // topic name
@@ -183,24 +183,24 @@ void comm_MQTT_id()
       0x00
   };
   
-  char json_string[128];  // final json string
+  char json_string[20];  // final json string
   char tmp[10];           // temporary variable holding int as strings
   
   /* Payload composed of Device ID */
   strcpy(json_string, "{\"id\":");
-  sprintf(tmp, "\"%.3u\"", DEVICE_ID);
+  sprintf(tmp, "\"%c\"", DEVICE_ID);
   strcat(json_string, tmp);  
   strcat(json_string, "}");
   
   // payload
-  memcpy(&data[8], json_string, 12);
+  memcpy(&data[8], json_string, 10);
   
-  // Prepare to send 20 byte
-  comm_UART_TX_str("AT+CIPSEND=20");
+  // Prepare to send 18 byte
+  comm_UART_TX_str("AT+CIPSEND=18");
   comm_delay_s(2);
   
-  // Send the 20 bytes
-  comm_UART_TX_raw(data, 20);
+  // Send the 18 bytes
+  comm_UART_TX_raw(data, 18);
   comm_delay_s(2);
 }
 
@@ -225,25 +225,29 @@ void comm_MQTT_init()
 void comm_init()
 {
   comm_UART_init();
-  IE2 &= ~UCA0RXIE; // Disable UART RX interrupt before we send data
+//  IE2 &= ~UCA0RXIE; // Disable UART RX interrupt before we send data
+  
+  
   comm_delay_s(1);
   
   comm_ESP_rst();
+  
   comm_WIFI_init();
   
   comm_MQTT_init();
   
+  comm_delay_s(2);
   IE2 |= UCA0RXIE;
 }
 
 /* MQTT PUBLISH event with input */
 void comm_MQTT_pub_event(uint8_t *payload)
 {
-  uint8_t data[89] = {
+  uint8_t data[84] = {
       // type 3
       0x30,
-      // remaining length 87
-      87,
+      // remaining length 82
+      82,
       // topic length
       0x00, 0x05,
       // topic name
@@ -253,13 +257,13 @@ void comm_MQTT_pub_event(uint8_t *payload)
   };
   
   // payload
-  memcpy(&data[10], payload, 79);
+  memcpy(&data[10], payload, 74);
   
-  // Prepare to send 89 byte
-  comm_UART_TX_str("AT+CIPSEND=89");
+  // Prepare to send 84 byte
+  comm_UART_TX_str("AT+CIPSEND=84");
   comm_delay_s(2);
   
-  // Send the 89 bytes
-  comm_UART_TX_raw(data, 89);
+  // Send the 84 bytes
+  comm_UART_TX_raw(data, 84);
   comm_delay_s(2);
 }

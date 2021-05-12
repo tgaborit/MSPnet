@@ -29,7 +29,7 @@
 //#define BUZZ
 #ifdef BUZZ
   #define BUZZ_PORT 1           // port (set to 1 or 2)
-  #define BUZZ_PIN 0x80         // pin (mask of the pin position between pin 0 and 7)
+  #define BUZZ_PIN 0x40         // pin (mask of the pin position between pin 0 and 7)
 #endif
 
 // function to setup the board leds
