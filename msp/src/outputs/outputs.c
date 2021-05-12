@@ -94,12 +94,13 @@ static void set_D3(Output_type type, Output_trigger trig, Intensity intensity, D
     else{
       LED_D3_timer = duration;
     }
+    P2OUT &= ~(command[0]);                             // reset first P2.1, P2.3 and P2.5
     P2OUT |= command[type-2];                           // set only P2.1, P2.3 and P2.5
   }
   
   // if trigger is OFF, reset led.
   else{
-    P2OUT &= ~(command[type-2]);                        // reset only P2.1, P2.3 and P2.5
+    P2OUT &= ~(command[0]);                             // reset only P2.1, P2.3 and P2.5
     LED_D3_timer = 0;                                   // reset the timer
     D3_PWM = 0;
   }
@@ -219,9 +220,9 @@ void update_outputs(int mode){
     P2OUT &= ~(0x2A);
   }
 
-#ifdef BUZZ
   // check if timer is still good for buzzer and update it
   if(buzzer_timer != 0){
+#ifdef BUZZ
    // update timer in case of finite duration
     if((mode == 0) && (buzzer_timer != -1)){
       --buzzer_timer;
@@ -236,14 +237,24 @@ void update_outputs(int mode){
       }
     }
   }
+#endif BUZZ
   else{
     D3_PWM = 0;         // else reset led parameters
+#ifdef BUZZ
     if(BUZZ_PORT == 1){
         P1OUT &= ~(BUZZ_PIN);   // reset only P1.x
       }
     else{
       P2OUT &= ~(BUZZ_PIN);     // reset only P2.x
     }
+#endif BUZZ
   }
-#endif
+  if((D1_PWM == 0) && (D2_PWM == 0) && (D3_PWM == 0)){
+    TA0CCTL1 &= ~(CCIE);        // timer A0 CCR1 interrupt disable
+  }
+#ifdef BUZZ
+  if(buzzer_PWM == 0){
+    TA0CCTL2 &= ~(CCIE);            // timer A0 CCR2 interrupt enabled (compare mode)
+  }
+#endif BUZZ
 }

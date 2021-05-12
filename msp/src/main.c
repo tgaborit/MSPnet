@@ -72,9 +72,7 @@ int main( void )
     
     // check if timer 0 did an interrupt
     if(timer0_interrupt == 1)
-    {
-      timer0_interrupt = 0;           // clear interrupt flag
-      
+    {      
       // update switches press time if they are used and in press state
       #ifdef SWITCH_0
         if(switch_pressed == 1 && switch_press_time < 65535)
@@ -107,6 +105,8 @@ int main( void )
         }
         --adc_counter;
       #endif
+        
+      timer0_interrupt = 0;           // clear interrupt flag
     }
     
     // check if timer0 CCR1 did an interrupt
@@ -129,8 +129,8 @@ int main( void )
           // checks if switch_0 has been pressed/released
           if(debounce(switch_pressed, 1, 0x08))
           {
-            switch_pressed = (switch_pressed+1)%2;                              // set to 1 if pressed, 0 if released
             send_event(SWITCH_MCU,switch_pressed,0,switch_press_time);        // send event to the server
+            switch_pressed = (switch_pressed+1)%2;                              // set to 1 if pressed, 0 if released
             switch_press_time = 0;                                              // reset press time
           }
         }
@@ -142,8 +142,8 @@ int main( void )
           // checks if ext_switch_1 has been pressed/released
           if(debounce(ext_switch_1_pressed, EXT_PORT_1, EXT_PIN_1))
           {
-            ext_switch_1_pressed = (ext_switch_1_pressed+1)%2;                                  // set to 1 if pressed, 0 if released
             send_event(SWITCH_MICRO_1, ext_switch_1_pressed,0,ext_switch_1_press_time);       // send event to the server
+            ext_switch_1_pressed = (ext_switch_1_pressed+1)%2;                                  // set to 1 if pressed, 0 if released
             ext_switch_1_press_time = 0;                                                        // reset press time
           }
         }
@@ -155,8 +155,8 @@ int main( void )
           // checks if ext_switch_2 has been pressed/released
           if(debounce(ext_switch_2_pressed, EXT_PORT_2, EXT_PIN_2))
           {
-            ext_switch_2_pressed = (ext_switch_2_pressed+1)%2;                                  // set to 1 if pressed, 0 if released
             send_event(SWITCH_MICRO_2, ext_switch_2_pressed,0,ext_switch_2_press_time);       // send event to the server
+            ext_switch_2_pressed = (ext_switch_2_pressed+1)%2;                                  // set to 1 if pressed, 0 if released
             ext_switch_2_press_time = 0;                                                        // reset press time
           }
         }
@@ -264,7 +264,10 @@ __interrupt void Timer0_A0 (void)
                   break;
     case 4:       timer0_CCR2_interrupt = 1;    // update interrupt flag
                   break;
-    default:      timer0_interrupt = 1;         // update interrupt flag
+    default:      if(TA0CCTL0 & CCIFG){
+                    timer0_interrupt = 1;         // update interrupt flag
+                  }
+                  break;
   }
   LPM3_EXIT;
 }
