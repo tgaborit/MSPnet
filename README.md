@@ -1,6 +1,6 @@
 # EE579-IFTT
 
-This project consists in the implementation of a **if this then that** functionality. Devices based on a MSP430 microcontroller are able to send inputs and receive outputs to any similar device connected to the system based on a web-based server. The logic defining the inputs and outputs is configurable by the user. 
+This project consists in the implementation of a **"if this, then that"** functionality. Devices based on a MSP430 microcontroller are able to send inputs and receive outputs to any similar device connected to the system based on a web-based server. The logic defining the inputs and outputs is configurable by the user. 
 
 ## Tree view
 
