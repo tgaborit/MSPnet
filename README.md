@@ -2,6 +2,14 @@
 
 This project consists in the implementation of a **"if this, then that"** functionality. Devices based on a MSP430 microcontroller are able to send inputs and receive outputs to any similar device connected to the system based on a web-based server. The logic defining the inputs and outputs is configurable by the user. For example, to blink a LED on a device for 10 seconds when a switch is toggled on another device.
 
+## Building
+
+1. Open the project in '/msp' using IAR EW for MSP430
+2. Modify the config.h with the desired configuration for the device targetted.
+3. Build the project and download the generated file on the board.
+4. Connect to the user interface of the server at http://3.8.210.204:1880/ui to define the logic of inputs and outputs between your boards newly connected.
+5. All done! Your system is up and running, you can communicate between boards following your own rules. 
+
 ## Tree view
 
 * `/documents` : the documents used for the project management
