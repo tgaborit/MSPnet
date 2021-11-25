@@ -7,6 +7,7 @@ This project consists in the implementation of a **"if this, then that"** functi
 * `/documents` : the documents used for the project management
 * `/msp` : the IAR project containing the header and source files relating to the client part of the system, i. e. the device based on a MSP430
 * `/server` : the source files related to the server part of the system
+* `config.h` : configuration file related to the client comprising parameters such as the WiFi Configuration, the MQTT Broker address or the board setup.
 
 ## Built With
 
