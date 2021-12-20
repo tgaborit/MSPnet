@@ -1,6 +1,6 @@
 # MSPnet
 
-This project consists in the implementation of an **"if this, then that"** functionality. Devices based on a MSP430 microcontroller are able to send inputs and receive outputs to any similar device connected to the system through Internet. The logic defining the inputs and outputs is based on a web-based server and configurable by the user. For example, blinking a LED on a device for 10 seconds when a switch is toggled on another device.
+This project consists in the implementation of an **"if this, then that"** functionality. Devices based on a MSP430 microcontroller are able to send inputs and receive outputs to any similar device connected to the system through Internet. The logic defining the inputs and outputs is based on a web-based server and configurable by the user. For example, blinking a LED on a device for 10 seconds when a switch is toggled on another device. A demonstration is available at https://github.com/tgaborit/MSPnet/blob/main/doc/demonstration.mp4. A report delivered with this project is available at 
 
 <p align="center">
   <img src="/doc/global-schematic.png" alt="schematic" height=600/>
