@@ -2,6 +2,13 @@
 
 This project consists in the implementation of an **"if this, then that"** functionality. Devices based on a MSP430 microcontroller are able to send inputs and receive outputs to any similar device connected to the system through Internet. The logic defining the inputs and outputs is based on a web-based server and configurable by the user. For example, to blink a LED on a device for 10 seconds when a switch is toggled on another device.
 
+## Hardware
+
+The devices are based on a MSP430G2553 Launchpad from Texas Instruments embedding a MSP430 microcontroller, and an ESP-01 Wi-Fi module. They are connected via UART.
+
+## User interface
+
+
 ## Building
 
 1. Open the project in '/msp' using IAR EW for MSP430
