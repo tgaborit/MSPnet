@@ -16,6 +16,8 @@ The devices are based on a MSP430G2553 Launchpad from Texas Instruments embeddin
   <img src="/doc/rule-editor.png" alt="rule editor" height=400/>
 </p>
 
+On the user interface, one can add a new rule to the system. To do so, the user selects the input device and the output device, with the input to detect and the ouput action to process as a result.
+
 ## Building
 
 1. Open the project in '/msp' using IAR EW for MSP430
