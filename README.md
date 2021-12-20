@@ -12,6 +12,9 @@ The devices are based on a MSP430G2553 Launchpad from Texas Instruments embeddin
 
 ## User interface
 
+<p align="center">
+  <img src="/doc/rule-editor.png" alt="rule editor" height=400/>
+</p>
 
 ## Building
 
